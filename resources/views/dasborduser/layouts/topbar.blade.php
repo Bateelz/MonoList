@@ -103,7 +103,7 @@
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="@lang('translation.Search')" aria-label="Search input">
 
-                            <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>s
+                            <button class="btn btn-danger" type="submit"><i class="mdi mdi-magnify"></i></button>s
                         </div>
                     </div>
                 </form>
@@ -227,7 +227,7 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     </div>
 
                     <div class="mt-3 d-grid">
-                        <button class="btn btn-primary waves-effect waves-light UpdatePassword" data-id="{{ Auth::user()->id }}"
+                        <button class="btn btn-danger waves-effect waves-light UpdatePassword" data-id="{{ Auth::user()->id }}"
                             type="submit">Update Password</button>
                     </div>
                 </form>
