@@ -28,9 +28,9 @@
                         <span key="t-tasks">List</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('list.index') }}" key="t-task-list">@lang('translation.Task_List')</a></li>
-                        <li><a href="{{ route('list.list') }}" key="t-kanban-board">@lang('translation.Kanban_Board')</a></li>
-                        <li><a href="{{ route('list.create') }}" key="t-create-task">@lang('translation.Create_Task')</a></li>
+                        <!-- <li><a href="{{ route('list.index') }}" key="t-task-list">@lang('translation.Task_List')</a></li> -->
+                        <li><a href="{{ route('list.list') }}" key="t-kanban-board">My list</a></li>
+                        <li><a href="{{ route('list.create') }}" key="t-create-task">Add list</a></li>
                     </ul>
                 </li>
 
