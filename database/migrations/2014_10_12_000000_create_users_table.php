@@ -25,6 +25,8 @@ class CreateUsersTable extends Migration
             $table->string('avatar');
             $table->enum('gender',[User::GENDER_FEMALE,User::GENDER_MALE]);
             $table->string('password');
+            $table->string('google_id')->nullable();
+            $table->string('facebook_id')->nullable();
             $table->date('age');
             $table->boolean('status')->default(true);
             $table->softDeletes('deleted_at',0);

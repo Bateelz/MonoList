@@ -29,10 +29,11 @@ Route::prefix('social')->group(function () {
     Route::get('auth/callback/{driver}', [SocialController::class, 'handleCallback']);
 });
 
-Route::prefix('list')->name('list.')->group(function () {
-    Route::get('list', [UserListController::class,'list'])->name('list');
+Route::prefix('list')->name('list.')->middleware('auth')->group(function () {
     Route::get('/', [UserListController::class,'index'])->name('index');
+    Route::get('list', [UserListController::class,'list'])->name('list');
     Route::get('create', [UserListController::class,'create'])->name('create');
+    Route::post('store',[UserListController::class,'store'])->name('store');
 });
 
 
