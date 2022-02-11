@@ -7,6 +7,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialController extends Controller
@@ -20,20 +21,22 @@ class SocialController extends Controller
     public function handleCallback($driver)
     {
         try {
-
             $user = Socialite::driver($driver)->user();
-
-            $finduser = User::where('google_id', $user->id)->first();
-
-            if($finduser){
+            if ($driver  === 'google') {
+                $finduser = User::where('google_id', $user->id)->first();
+            }
+            $finduser = User::where('facebook_id', $user->id)->first();
+            if ($finduser) {
                 Auth::login($finduser);
                 return redirect()->route('root');
-            }else{
+            } else {
+
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
-                    'google_id'=> $user->id,
-                    'password' => encrypt('123456789')
+                    'google_id' => $driver == "google" ? $user->id : null,
+                    'facebook_id' => $driver == "facebook" ? $user->id : null,
+                    'password' => Hash::make('123456789')
                 ]);
                 Auth::login($newUser);
                 return redirect()->route('root');

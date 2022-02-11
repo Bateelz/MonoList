@@ -33,13 +33,13 @@ return [
     'facebook' => [
         'client_id' => '2812402659069257',
         'client_secret' => '3ca4ad86262998101f2783c4a7240728',
-        'redirect' => 'http://localhost:8000/social/auth/callback/facebook',
+        'redirect' => 'https://monolist.io/social/auth/callback/facebook',
     ],
 
     'google' => [
         'client_id' => '1086884301623-0ku0psbdi7fk9p3oa9vdarnvc140qjn1.apps.googleusercontent.com',
         'client_secret' => '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',
-        'redirect' => 'http://localhost:8000/social/auth/callback/google',
+        'redirect' => 'https://monolist.io/social/auth/callback/google',
     ],
 
 ];
