@@ -7,15 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class UserList extends Model
+class UserItem extends Model
 {
-    use HasFactory,SoftDeletes;
-
-    protected $fillable=['user_id','name','type','color'];
-
-    public function user(){
+    use HasFactory, SoftDeletes;
+    protected $fillable = ['list_id', 'user_id', 'name'];
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-
 
 }

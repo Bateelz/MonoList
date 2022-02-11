@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User\UserItem;
 use App\Models\User\UserList;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -54,5 +55,9 @@ class User extends Authenticatable
 
     public function userlist(){
         return $this->hasMany(UserList::class);
+    }
+
+    public function listitem(){
+        return $this->hasMany(UserItem::class);
     }
 }

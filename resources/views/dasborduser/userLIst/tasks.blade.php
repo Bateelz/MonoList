@@ -15,194 +15,169 @@
     @endcomponent
 
     <div class="row">
+        @foreach ($list as $item)
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-body">
-                    <div class="dropdown float-end">
-                        <a href="#" class="dropdown-toggle arrow-none" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <a class="dropdown-item" href="#">Rename</a>
-                            <a class="dropdown-item" href="#">Delete</a>
-                        </div>
-                    </div> <!-- end dropdown -->
 
-                    <h4 class="card-title mb-4">List name</h4>
-                    <div id="task-1">
-                        <div id="upcoming-task" class="pb-1 task-list">
 
-                            <div class="card task-box" id="uptask-1">
-                                <div class="card-body">
-                                    <div class="dropdown float-end">
-                                        <a href="#" class="dropdown-toggle arrow-none" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item edittask-details" href="#" id="taskedit" data-id="#uptask-1" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">Edit</a>
-                                            <a class="dropdown-item deletetask" href="#" data-id="#uptask-1">Delete</a>
-                                        </div>
-                                    </div> <!-- end dropdown -->
-                                    <div class="float-end ml-2">
-                                    </div>
-                                    <div>
-                                        <h5 class="font-size-15"><a href="javascript: void(0);" class="text-dark" id="task-name">Item name</a></h5>
-                                       
-                                    </div>
-                                   
+                    @php $list_item=App\Models\User\UserItem::where('list_id',$item->id)->get(); @endphp
+                        <div class="dropdown float-end">
+                            <a href="#" class="dropdown-toggle arrow-none" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
 
-                                    
-                                </div>
 
+                                <a class="dropdown-item" type="button" data-toggle="modal"
+                                    data-target="#renamelist">Rename</a>
+                                <a class="dropdown-item" href="{{ route('list.delete',$item->id) }}">Delete</a>
                             </div>
-                            <!-- end task card -->
+                        </div> <!-- end dropdown -->
+                        <h4 class="card-title mb-4">{{ $item->name }}</h4>
+                        <div id="task-1">
+                            <div id="upcoming-task" class="pb-1 task-list">
+                                @if ($list_item)
+                                @foreach ($list_item as $data )
 
-                            <div class="card task-box" id="uptask-2">
-                                <div class="card-body">
-                                    <div class="dropdown float-end">
-                                        <a href="#" class="dropdown-toggle arrow-none" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item edittask-details" href="#" id="taskedit" data-id="#uptask-2" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">Edit</a>
-                                            <a class="dropdown-item deletetask" href="#" data-id="#uptask-2">Delete</a>
+
+                                        <div class="card task-box" id="uptask-1">
+                                            <div class="card-body">
+                                                <div class="dropdown float-end">
+                                                    <a href="#" class="dropdown-toggle arrow-none" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item edittask-details" href="#" id="taskedit"
+                                                           data-bs-toggle="modal"
+                                                            data-bs-target=".bs-example-modal-lg"
+                                                            data-id="{{ $data->id }}">Edit</a>
+                                                        <a class="dropdown-item" href="{{ route('list.destoryItem',$data->id) }}">Delete</a>
+                                                    </div>
+                                                </div> <!-- end dropdown -->
+                                                <div class="float-end ml-2">
+                                                </div>
+                                                <div>
+                                                    <h5 class="font-size-15"><a href="javascript: void(0);"
+                                                            class="text-dark" id="task-name">{{ $data->name }}</a>
+                                                    </h5>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div> <!-- end dropdown -->
-                                    <div class="float-end ml-2">
-                                    </div>
-                                    <div>
-                                        <h5 class="font-size-15"><a href="javascript: void(0);" class="text-dark" id="task-name">item name 2</a></h5>
-                                    </div>
+                                        <div id="editform{{ $data->id}}" class="modal fade bs-example-modal-lg"
+                                            tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title mt-0 update-task-title"
+                                                            style="display: none;">Update item</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="Post"
+                                                            action="{{ route('list.editItem', $data->id ) }}" role="form">
+                                                            @csrf
+                                                            <input type="hidden" name="list_id" value="{{ $item->id }}">
+                                                            <div class="form-group mb-3">
+                                                                <label for="taskname" class="col-form-label">Item Name<span
+                                                                        class="text-danger">*</span></label>
+                                                                <div class="col-lg-12">
+                                                                    <input id="taskname" name="name" type="text"
+                                                                        class="form-control validate"
+                                                                        value="{{  $data->name }}">
+                                                                </div>
+                                                            </div>
 
-                                
-
-                                    
-                                </div>
-
+                                                            <div class="row">
+                                                                <div class="col-lg-10">
+                                                                    <button type="submit" class="btn btn-danger" >Update Item</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
+                                        @endforeach
+                                @endif
                             </div>
-                            <!-- end task card -->
-
-                           
-
+                            <div class="text-center d-grid">
+                                <a href="javascript: void(0);" class="btn btn-danger waves-effect waves-light"
+                                    data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg-lg"
+                                    data-id="{{ $item->id }}"><i class="mdi mdi-plus me-1"></i> Add New Item</a>
+                            </div>
                         </div>
-
-                        <div class="text-center d-grid">
-                            <a href="javascript: void(0);" class="btn btn-danger waves-effect waves-light addtask-btn" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg" data-id="#upcoming-task"><i class="mdi mdi-plus me-1"></i> Add New Item</a>
-                        </div>
-                    </div>
                 </div>
+
+
+
+
+
+                <div id="modalForm{{ $item->id }}" class="modal fade bs-example-modal-lg-lg"
+                    tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title mt-0 add-task-title">Add New item</h5>
+                            </div>
+                            <div class="modal-body">
+                                <form method="Post" action="{{ route('list.addItem') }}" role="form">
+                                    @csrf
+                                    <input type="hidden" name="list_id" value="{{ $item->id }}">
+                                    <div class="form-group mb-3">
+                                        <label for="taskname" class="col-form-label">Item Name<span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-lg-12">
+                                            <input id="taskname" name="name" type="text" class="form-control validate"
+                                                placeholder="Enter  Name..." required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-10">
+                                            <button type="submit" class="btn btn-danger" id="addtask">Add Item</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+
             </div>
         </div>
+        @endforeach
         <!-- end col -->
     </div>
+
     <!-- end row -->
 
-    <div id="modalForm" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+
+
+    {{-- <div id="modalForm" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title mt-0 add-task-title">Add New item</h5>
                     <h5 class="modal-title mt-0 update-task-title" style="display: none;">Update item</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="NewtaskForm" role="form">
                         <div class="form-group mb-3">
-                            <label for="taskname" class="col-form-label">Item Name<span class="text-danger">*</span></label>
+                            <label for="taskname" class="col-form-label">Item Name<span
+                                    class="text-danger">*</span></label>
                             <div class="col-lg-12">
-                                <input id="taskname" name="taskname" type="text" class="form-control validate" placeholder="Enter Task Name..." required>
-                            </div>
-                        </div>
-                        <!-- <div class="form-group mb-3">
-                            <label class="col-form-label">Task Description</label>
-                            <div class="col-lg-12">
-                                <textarea id="taskdesc" class="form-control" name="taskdesc"></textarea>
+                                <input id="taskname" name="taskname" type="text" class="form-control validate"
+                                    placeholder="Enter Task Name..." required>
                             </div>
                         </div>
 
-                        <div class="form-group mb-3">
-                            <label class="col-form-label">Add Team Member<span class="text-danger">*</span></label>
-                            <ul class="list-unstyled user-list validate" id="taskassignee">
-                                <li>
-                                    <div class="form-check form-check-primary mb-2 d-flex align-items-center">
-                                        <input class="form-check-input" type="checkbox" id="member-1" name="member[]">
-                                        <label class="form-check-label ms-2" for="member-1">Albert Rodarte</label>
-                                        <img src="{{ URL::asset('/assets/images/users/avatar-1.jpg') }}" class="rounded-circle avatar-xs m-1" alt="">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check form-check-primary mb-2 d-flex align-items-center">
-                                        <input class="form-check-input" type="checkbox" id="member-2" name="member[]">
-                                        <label class="form-check-label ms-2" for="member-2">Hannah Glover</label>
-                                        <img src="{{ URL::asset('/assets/images/users/avatar-2.jpg') }}" class="rounded-circle avatar-xs m-1" alt="">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check form-check-primary mb-2 d-flex align-items-center">
-                                        <input class="form-check-input" type="checkbox" id="member-3" name="member[]">
-                                        <label class="form-check-label ms-2" for="member-3">Adrian Rodarte</label>
-                                        <img src="{{ URL::asset('/assets/images/users/avatar-3.jpg') }}" class="rounded-circle avatar-xs m-1" alt="">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check form-check-primary mb-2 d-flex align-items-center">
-                                        <input class="form-check-input" type="checkbox" id="member-4" name="member[]">
-                                        <label class="form-check-label ms-2" for="member-4">Frank Hamilton</label>
-                                        <img src="{{ URL::asset('/assets/images/users/avatar-4.jpg') }}" class="rounded-circle avatar-xs m-1" alt="">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check form-check-primary mb-2 d-flex align-items-center">
-                                        <input class="form-check-input" type="checkbox" id="member-5" name="member[]">
-                                        <label class="form-check-label ms-2" for="member-5">Justin Howard</label>
-                                        <img src="{{ URL::asset('/assets/images/users/avatar-5.jpg') }}" class="rounded-circle avatar-xs m-1" alt="">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check form-check-primary mb-2 d-flex align-items-center">
-                                        <input class="form-check-input" type="checkbox" id="member-6" name="member[]">
-                                        <label class="form-check-label ms-2" for="member-6">Michael Lawrence</label>
-                                        <img src="{{ URL::asset('/assets/images/users/avatar-6.jpg') }}" class="rounded-circle avatar-xs m-1" alt="">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check form-check-primary mb-2 d-flex align-items-center">
-                                        <input class="form-check-input" type="checkbox" id="member-7" name="member[]">
-                                        <label class="form-check-label ms-2" for="member-7">Oliver Sharp</label>
-                                        <img src="{{ URL::asset('/assets/images/users/avatar-7.jpg') }}" class="rounded-circle avatar-xs m-1" alt="">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check form-check-primary mb-2 d-flex align-items-center">
-                                        <input class="form-check-input" type="checkbox" id="member-8" name="member[]">
-                                        <label class="form-check-label ms-2" for="member-8">Richard Simpson</label>
-                                        <img src="{{ URL::asset('/assets/images/users/avatar-8.jpg') }}" class="rounded-circle avatar-xs m-1" alt="">
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="form-group mb-4">
-                            <label class="col-form-label">Status<span class="text-danger">*</span></label>
-                            <div class="col-lg-12">
-                                <select class="form-select validate" id="TaskStatus" required>
-                                    <option value="" selected>Choose..</option>
-                                    <option value="Waiting">Waiting</option>
-                                    <option value="Approved">Approved</option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="Complete">Complete</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group mb-4">
-                            <label for="taskbudget" class="col-form-label">Budget<span class="text-danger">*</span></label>
-                            <div class="col-lg-12">
-                                <input id="taskbudget" name="taskbudget" type="number" placeholder="Enter Task Budget..." class="form-control" required>
-                            </div>
-                        </div> -->
                         <div class="row">
                             <div class="col-lg-10">
                                 <button type="button" class="btn btn-danger" id="addtask">Add Item</button>
@@ -213,7 +188,7 @@
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+    </div><!-- /.modal --> --}}
 
 
 @endsection
