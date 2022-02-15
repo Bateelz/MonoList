@@ -17,7 +17,7 @@ class UserListController extends Controller
 
     public function list()
     {
-        $list=UserList::get();
+        $list=UserList::where("user_id",Auth::id())->get();
         return view('dasborduser.userLIst.tasks',compact('list'));
     }
 
@@ -57,14 +57,13 @@ class UserListController extends Controller
         return redirect()->route('list.list')->withSuccess('NotFoune List');
       }
 
-      public function addItem(Request $request)
+      public function addItem(Request $request,$id)
       {
           $request->validate([
-              'list_id'=>'required',
               'name'=>'required',
           ]);
           $item=new  UserItem();
-          $item->list_id=$request->list_id;
+          $item->list_id=$id;
           $item->name=$request->name;
           $item->user_id=Auth::id();
           $item->save();
