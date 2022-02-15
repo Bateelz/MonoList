@@ -19,16 +19,12 @@
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-body">
-
-
                     @php $list_item=App\Models\User\UserItem::where('list_id',$item->id)->get(); @endphp
                         <div class="dropdown float-end">
                             <a href="#" class="dropdown-toggle arrow-none" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-
-
                                 <a class="dropdown-item" type="button" data-toggle="modal"
                                     data-target="#renamelist">Rename</a>
                                 <a class="dropdown-item" href="{{ route('list.delete',$item->id) }}">Delete</a>
@@ -39,8 +35,6 @@
                             <div id="upcoming-task" class="pb-1 task-list">
                                 @if ($list_item)
                                 @foreach ($list_item as $data )
-
-
                                         <div class="card task-box" id="uptask-1">
                                             <div class="card-body">
                                                 <div class="dropdown float-end">
@@ -51,7 +45,7 @@
                                                     <div class="dropdown-menu dropdown-menu-end">
                                                         <a class="dropdown-item edittask-details" href="#" id="taskedit"
                                                            data-bs-toggle="modal"
-                                                            data-bs-target=".bs-example-modal-lg"
+                                                            data-bs-target=".bs-example-modal-lg{{ $data->id }}"
                                                             data-id="{{ $data->id }}">Edit</a>
                                                         <a class="dropdown-item" href="{{ route('list.destoryItem',$data->id) }}">Delete</a>
                                                     </div>
@@ -65,7 +59,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="editform{{ $data->id}}" class="modal fade bs-example-modal-lg"
+                                        <div id="editform{{ $data->id}}" class="modal fade bs-example-modal-lg{{ $data->id }}"
                                             tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                                             aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
@@ -106,48 +100,41 @@
                             </div>
                             <div class="text-center d-grid">
                                 <a href="javascript: void(0);" class="btn btn-danger waves-effect waves-light"
-                                    data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg-lg"
+                                    data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg-lg{{ $item->id }}"
                                     data-id="{{ $item->id }}"><i class="mdi mdi-plus me-1"></i> Add New Item</a>
                             </div>
+                            <div id="modalForm" class="modal fade bs-example-modal-lg-lg{{ $item->id }}"
+                                tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title mt-0 add-task-title">Add New item</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="Post" action="{{ route('list.addItem',$item->id) }}" role="form">
+                                                @csrf
+                                                {{-- <input type="hidden" name="list_id" value="{{ $item->id }}"> --}}
+                                                <div class="form-group mb-3">
+                                                    <label for="taskname" class="col-form-label">Item Name<span
+                                                            class="text-danger">*</span></label>
+                                                    <div class="col-lg-12">
+                                                        <input id="taskname" name="name" type="text" class="form-control validate"
+                                                            placeholder="Enter  Name..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-10">
+                                                        <button type="submit" class="btn btn-danger" id="addtask">Add Item</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
                         </div>
                 </div>
-
-
-
-
-
-                <div id="modalForm{{ $item->id }}" class="modal fade bs-example-modal-lg-lg"
-                    tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title mt-0 add-task-title">Add New item</h5>
-                            </div>
-                            <div class="modal-body">
-                                <form method="Post" action="{{ route('list.addItem') }}" role="form">
-                                    @csrf
-                                    <input type="hidden" name="list_id" value="{{ $item->id }}">
-                                    <div class="form-group mb-3">
-                                        <label for="taskname" class="col-form-label">Item Name<span
-                                                class="text-danger">*</span></label>
-                                        <div class="col-lg-12">
-                                            <input id="taskname" name="name" type="text" class="form-control validate"
-                                                placeholder="Enter  Name..." required>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-10">
-                                            <button type="submit" class="btn btn-danger" id="addtask">Add Item</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
-
-
             </div>
         </div>
         @endforeach
@@ -155,42 +142,6 @@
     </div>
 
     <!-- end row -->
-
-
-
-    {{-- <div id="modalForm" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
-        aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title mt-0 add-task-title">Add New item</h5>
-                    <h5 class="modal-title mt-0 update-task-title" style="display: none;">Update item</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="NewtaskForm" role="form">
-                        <div class="form-group mb-3">
-                            <label for="taskname" class="col-form-label">Item Name<span
-                                    class="text-danger">*</span></label>
-                            <div class="col-lg-12">
-                                <input id="taskname" name="taskname" type="text" class="form-control validate"
-                                    placeholder="Enter Task Name..." required>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-10">
-                                <button type="button" class="btn btn-danger" id="addtask">Add Item</button>
-                                <button type="button" class="btn btn-danger" id="updatetaskdetail">Update Item</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal --> --}}
-
-
 @endsection
 @section('script')
     <!-- dragula plugins -->

@@ -34,7 +34,7 @@ Route::prefix('list')->name('list.')->middleware('auth')->group(function () {
     Route::get('list', [UserListController::class,'list'])->name('list');
     Route::get('create', [UserListController::class,'create'])->name('create');
     Route::post('store',[UserListController::class,'store'])->name('store.list');
-    Route::post('addItem',[UserListController::class,'addItem'])->name('addItem');
+    Route::post('addItem/{id}',[UserListController::class,'addItem'])->name('addItem');
     Route::post('editItem/{id}',[UserListController::class,'editItem'])->name('editItem');
     Route::get('destoryItem/{id}',[UserListController::class,'destoryItem'])->name('destoryItem');
     Route::get('delete/{id}',[UserListController::class,'delete'])->name('delete');
