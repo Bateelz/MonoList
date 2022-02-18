@@ -2,16 +2,7 @@
 @section('content')
     <body class="auth-body-bg">
         <body style="background-color: #fafafa !important">
-            <nav class="navbar navbar-light bg-light">
-                <div class="container-fluid">
-                    <a href="index" class="d-block auth-logo">
-                        <img src="{{ asset('/assets/images/logo-dark.png') }}" alt="" height="18"
-                                class="auth-logo-dark">
-                        <img src="{{ asset('/assets/images/logo-light.png') }}" alt="" height="18"
-                                class="auth-logo-light">
-                        </a>
-                    </div>
-                </nav>
+          
 
                 <div class="container">
                     <div class="d-flex col-l-6 justify-content-center">
@@ -21,9 +12,9 @@
                                 <div class="d-flex flex-column h-100 ">
                                     <div class="mb-4 mb-md-5">
                                         <a href="index" class="d-block auth-logo">
-                                            <img src="{{ asset('/assets/images/logo-dark.png') }}" alt="" height="18"
+                                            <img src="{{ asset('/assets/images/monolist_red_full_02.png') }}" alt="" height="18"
                                                 class="auth-logo-dark">
-                                            <img src="{{ asset('/assets/images/logo-light.png') }}" alt="" height="18"
+                                            <img src="{{ asset('/assets/images/monolist_red_full_02.png') }}" alt="" height="18"
                                                 class="auth-logo-light">
                                         </a>
                                     </div>
@@ -67,8 +58,7 @@
 
 
                                             </div>
-                                            {{-- @if (Route::has('password.request')) <a href="{{ route('password.request') }}" class="text-muted">Forgot password?</a> @endif </label> --}}
-
+                                            <a href="" class="text-muted">Forgot password?</a> 
                                             <div class="mt-3 d-grid">
                                                 <button class="btn btn-danger waves-effect waves-light"
                                                     type="submit">LogIn</button>

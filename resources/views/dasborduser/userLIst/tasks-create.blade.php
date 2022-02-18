@@ -19,8 +19,9 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4">Create New List</h4>
+                    
                     <form  method="POST" action="{{ route('list.store.list') }}">
-                        @csrf
+                    @csrf
                         <input type="hidden" name="color" value="color">
                         <input type="hidden" name="type" value="type">
                         <div  class="outer">
