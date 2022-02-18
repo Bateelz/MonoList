@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="MonoList" name="description" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ URL::asset('assets/images/monolist_icon.png') }}">
 <!-- Bootstrap Css -->
 <link href="{{ URL::asset('/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
 <!-- Icons Css -->
@@ -27,9 +27,11 @@
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content">
-            <div class="page-content">
+            <div class="page-content" style="padding: 70px 0px 60px;">
                 <div class="container-fluid">
+              
                     @yield('content')
+                    
                 </div>
                 <!-- container-fluid -->
             </div>
