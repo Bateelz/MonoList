@@ -58,8 +58,7 @@
 
 
                                             </div>
-                                            {{-- @if (Route::has('password.request')) <a href="{{ route('password.request') }}" class="text-muted">Forgot password?</a> @endif </label> --}}
-
+                                            <a href="" class="text-muted">Forgot password?</a> 
                                             <div class="mt-3 d-grid">
                                                 <button class="btn btn-danger waves-effect waves-light"
                                                     type="submit">LogIn</button>
