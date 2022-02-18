@@ -1,50 +1,68 @@
 @extends('dasborduser.layouts.master-without-nav')
 @section('title') @lang('translation.Register')  @endsection
  @section('body')
-  <body class="auth-body-bg">
-  <body style="background-color: #fafafa !important">
-<nav class="navbar navbar-light bg-light">
 
-    <div class="container-fluid">
-      <a href="index" class="d-block auth-logo">
-        <img src="{{ URL::asset('/assets/images/logo-dark.png') }}" alt="" height="18" class="auth-logo-dark">
-        <img src="{{ URL::asset('/assets/images/logo-light.png') }}" alt="" height="18" class="auth-logo-light">
-      </a>
-    </div>
-  </nav>
+
   @endsection
   @section('content')
-  <br>
-  <br>
-  <div class="container" >
-    <div class="d-flex col-l-6 justify-content-center">
-      <div class="auth-full-page-content p-md-5 p-4" style="background-color: #ffffff !important;margin: 2%; border:solid 1px #dbdbdb; border-radius:8px;box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;">
-        <div class="w-100 "   >
+  <body class="auth-body-bg">
+        <body style="background-color: #fafafa !important">
+          
+
+                <div class="container">
+                    <div class="d-flex col-l-6 justify-content-center">
+                        <div class="auth-full-page-content p-md-5 p-4"
+                            style="background-color: #ffffff !important;margin: 2%; border:solid 1px #dbdbdb; border-radius:8px;box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;">
+                            <div class="w-100 ">
           <div class="d-flex flex-column h-100 ">
-            <div class="mb-4 mb-md-3">
-              <a href="index" class="d-block auth-logo">
-                <img src="{{ URL::asset('/assets/images/logo-dark.png') }}" alt="" height="18" class="auth-logo-dark">
-                <img src="{{ URL::asset('/assets/images/logo-light.png') }}" alt="" height="18" class="auth-logo-light">
-              </a>
-            </div>
-            <div class="my-auto">
-              <div>
+          <div class="mb-4 mb-md-5">
+                                        <a href="index" class="d-block auth-logo">
+                                            <img src="{{ asset('/assets/images/monolist_red_full_02.png') }}" alt="" height="18"
+                                                class="auth-logo-dark">
+                                            <img src="{{ asset('/assets/images/monolist_red_full_02.png') }}" alt="" height="18"
+                                                class="auth-logo-light">
+                                        </a>
+                                    </div>
+            
                 <h5 class="text-danger text-center">Register account</h5>
-              </div>
-              <div class=" input-group mt-3">
-                <form method="POST" class="form-horizontal" action="{{ route('Registration') }}" enctype="multipart/form-data"> @csrf <div class=" input-group mb-3">
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('first_name') }}" id="firstname" name="first_name" autofocus required placeholder="Firstname"> &nbsp; &nbsp;
+            
+              <div class="mt-4">
+                <form method="POST" class="form-horizontal" action="{{ route('Registration') }}" enctype="multipart/form-data">
+                   @csrf 
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('first_name') }}" id="firstname" name="first_name" autofocus required placeholder="Firstname"> 
+                    @error('firstname') <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span> @enderror
+                  </div>
+                  <div class="input-group mb-3">
                     <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('last_name') }}" id="lastname" name="last_name" autofocus required placeholder="Lastname"> @error('firstname') <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                     </span> @enderror
                   </div>
                   <div class="input-group mb-3">
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email') }}" name="email" placeholder="Email" autofocus required> &nbsp; &nbsp;
-                    <input type="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" id="password" name="password" autofocus required placeholder="Password"> @error('email') <span class="invalid-feedback" role="alert">
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email') }}" name="email" placeholder="Email" autofocus required> 
+                     @error('email') <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                     </span> @enderror
                   </div>
-                  <div class="mt-4 d-grid">
+                  <div class="input-group mb-3">
+
+                                                <div
+                                                    class="input-group auth-pass-inputgroup @error('password') is-invalid @enderror">
+                                                    <input type="password" name="password"
+                                                        class="form-control  @error('password') is-invalid @enderror"
+                                                         placeholder="Enter password"
+                                                        aria-label="Password" aria-describedby="password-addon">
+                                                    <button class="btn btn-light " type="button" id="password-addon">
+                                                        <i class="mdi mdi-eye-outline"></i>
+                                                    </button> @error('password') <span class="invalid-feedback"
+                                                            role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                    </span> @enderror
+                                                </div>
+                                            </div>
+                  <div class="mt-3 d-grid">
                     <button class="btn btn-danger waves-effect waves-light" type="submit">Register</button>
                   </div>
                   <div class="mt-4 text-center">
@@ -70,25 +88,25 @@
                   <div class="mt-3 text-center">
                     <p>Already have an account ? <a href="{{ url('/') }}" class="fw-medium text-danger"> Login</a>
                     </p>
-                  </div>
-              </div>
-            </div>
-        </div>
-        <!-- end col -->
-    </div>
-    <!-- end row -->
-    <!-- end col -->
-  </div>
-  <!-- end row -->
-  </div>
-
-  <br>
-  <br>
-  <nav class="navbar navbar-light bg-light">
-    <div class="container text-center">
-      <p>&copy; 2022 Monolist</p>
-    </div>
-    <!-- end container-fluid -->
-    </div>
-    @endsection
+                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+                </div>
+                <!-- end row -->
+                </div>
+                <br>
+                <br>
+                <nav class="navbar navbar-light bg-light">
+                    <div class="container text-center">
+                        <p>&copy; 2022 Monolist</p>
+                    </div>
+                </nav>
+                <!-- end container-fluid -->
+                </div>
+            @endsection
 

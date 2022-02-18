@@ -28,6 +28,10 @@
                                 <a class="dropdown-item" type="button" data-toggle="modal"
                                     data-target="#renamelist">Rename</a>
                                 <a class="dropdown-item" href="{{ route('list.delete',$item->id) }}">Delete</a>
+                                <a class="dropdown-item edittask-details"  id="taskedit"
+                                 data-bs-toggle="modal"
+                                 data-bs-target=".bs-example-modal-lg"
+                                 >Share List</a>
                             </div>
                         </div> <!-- end dropdown -->
                         <h4 class="card-title mb-4">{{ $item->name }}</h4>
@@ -93,6 +97,44 @@
                                                         </form>
                                                     </div>
                                                 </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
+
+                                          <div id="sharelist" class="modal fade bs-example-modal-lg"
+                                            tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header ">
+                                                    <div class="mt-4 justify-content-center">
+                                                <h5 class="font-size-20 mb-3">Share List</h5>
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item ">
+                                                      <a href="#" class="social-list-item bg-primary text-white border-primary">
+                                                        <i class="mdi mdi-file-pdf"></i>
+                                                      </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                      <a href="#" class="social-list-item bg-success text-white border-success">
+                                                        <i class="mdi mdi-whatsapp" ></i>
+                                                      </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                      <a href="#" class="social-list-item bg-danger text-white border-danger">
+                                                        <i class="mdi mdi-google"> </i>
+                                                      </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                      <a href="#" class="social-list-item bg-secondary text-white border-secondary">
+                                                        <i class="mdi mdi-link"> </i>
+                                                      </a>
+                                                    </li>
+                                                  </ul>
+                                            </div>
+ 
+                                    
+                                                    </div> 
+                                                     </div><!-- /.modal-content -->
                                             </div><!-- /.modal-dialog -->
                                         </div><!-- /.modal -->
                                         @endforeach

@@ -5,19 +5,19 @@
             <div class="navbar-brand-box">
                 <a href="index" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ URL::asset('/assets/images/logo.svg') }}" alt="" height="22">
+                        <img src="{{ asset('/assets/images/monolist_red_full_02.png') }}" alt="" height="9">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ URL::asset('/assets/images/logo-dark.png') }}" alt="" height="17">
+                        <img src="{{ asset('/assets/images/monolist_red_full_02.png') }}" alt="" height="22">
                     </span>
                 </a>
 
                 <a href="index" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ URL::asset('/assets/images/logo-light.svg') }}" alt="" height="22">
+                        <img src="{{ asset('/assets/images/monolist_red_full_02.png') }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ URL::asset('/assets/images/logo-light.png') }}" alt="" height="19">
+                        <img src="{{ asset('/assets/images/monolist_red_full_02.png') }}" alt="" height="19">
                     </span>
                 </a>
             </div>
@@ -138,7 +138,7 @@
                 </a>
                 <!-- item-->
                 <a href="{{ url('index/es') }}" class="dropdown-item notify-item language" data-lang="sp">
-                    <img src="{{ URL::asset ('/assets/images/flags/spain.jpg') }}" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
+                    <img src="{{ URL::asset ('/assets/images/flags/spain.jpg') }}" alt="user-image" class="me-1" height="12"> <span class="align-middle">Arabic</span>
                 </a>
             </div>
         </div>
