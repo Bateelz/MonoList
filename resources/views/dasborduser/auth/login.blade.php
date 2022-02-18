@@ -2,7 +2,7 @@
 @section('content')
     <body class="auth-body-bg">
         <body style="background-color: #fafafa !important">
-          
+
 
                 <div class="container">
                     <div class="d-flex col-l-6 justify-content-center">
@@ -21,7 +21,7 @@
                                     <h5 class="text-danger">Login</h5>
                                     <div class="mt-4">
                                         <form class="form-horizontal" method="post" action="{{ route('login') }}">
-                                            @csrf
+                                            {{ csrf_field() }}
                                             <div class=" input-group mb-3">
                                                 <input name="email" type="email"
                                                     class="form-control @error('email') is-invalid @enderror"
@@ -58,7 +58,7 @@
 
 
                                             </div>
-                                            <a href="" class="text-muted">Forgot password?</a> 
+                                            <a href="{{ url('forget') }}" class="text-muted">Forgot password?</a>
                                             <div class="mt-3 d-grid">
                                                 <button class="btn btn-danger waves-effect waves-light"
                                                     type="submit">LogIn</button>
