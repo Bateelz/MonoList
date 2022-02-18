@@ -20,19 +20,23 @@ class SocialController extends Controller
 
     public function handleCallback($driver)
     {
-        try {
             $user = Socialite::driver($driver)->user();
+            return $user;
             if ($driver  === 'google') {
-                $finduser = User::where('google_id', $user->id)->first();
+                $finduser = User::where('email', $user->email)->first();
             }
-            $finduser = User::where('facebook_id', $user->id)->first();
+
+            if ($driver  === 'facebook') {
+                $finduser = User::where('email', $user->email)->first();
+            }
             if ($finduser) {
                 Auth::login($finduser);
                 return redirect()->route('root');
             } else {
-
                 $newUser = User::create([
-                    'name' => $user->name,
+                    'first_name' => $user->name,
+                    'last_name'=>$user->name,
+                    'user_name'=>$user->name,
                     'email' => $user->email,
                     'google_id' => $driver == "google" ? $user->id : null,
                     'facebook_id' => $driver == "facebook" ? $user->id : null,
@@ -41,8 +45,5 @@ class SocialController extends Controller
                 Auth::login($newUser);
                 return redirect()->route('root');
             }
-        } catch (Exception $e) {
-            return $e->getMessage();
         }
-    }
 }
