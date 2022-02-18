@@ -82,7 +82,7 @@
                                                       </a>
                                                     </li>
                                                     <li class="list-inline-item">
-                                                      <a href="#" class="social-list-item bg-info text-white border-info">
+                                                      <a href="{{ url('social/auth/apple') }}" class="social-list-item bg-info text-white border-info">
                                                         <i class="mdi mdi-apple"></i>
                                                       </a>
                                                     </li>
