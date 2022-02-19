@@ -17,7 +17,7 @@
                 <div class="container">
                     <div class="d-flex col-l-6 justify-content-center">
                         <div class="auth-full-page-content p-md-5 p-4"
-                            style="background-color: #ffffff !important;margin: 2%; border:solid 1px #dbdbdb; border-radius:8px;box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;">
+                            style="background-color: #ffffff !important;margin: 2%; border:solid 1px #dbdbdb; border-radius:8px;box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px; min-height: 75vh;">
                             <div class="w-100" style="webkit-box-sizing: border-box;">
                                 <div class="d-flex flex-column">
                                     <div class="mb-4 mb-md-5">
