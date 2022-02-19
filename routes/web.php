@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashbordUser\Auth\ForgetPasswordController;
 use App\Http\Controllers\DashbordUser\Auth\LoginController;
 use App\Http\Controllers\DashbordUser\Auth\RegisterController;
 use App\Http\Controllers\DashbordUser\Auth\SocialController;
@@ -19,10 +20,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [LoginController::class, 'index']);
-Route::post('Login', [LoginController::class, 'Login'])->name('login');
+Route::post('login', [LoginController::class, 'Login'])->name('login');
 Route::get('register', [RegisterController::class, 'index']);
 Route::post('Registration', [RegisterController::class, 'Registration'])->name('Registration');
 Route::get('logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
+
+Route::prefix('forget')->name('forget.')->group(function()
+{
+    Route::get('/',[ForgetPasswordController::class,'index']);
+    Route::post('forget',[ForgetPasswordController::class,'forget'])->name('checkuser');
+    Route::get('resetpassword/{token}',[ForgetPasswordController::class,'showResetPasswordForm'])->name('returnformupdate');
+    Route::post('update',[ForgetPasswordController::class,'forget'])->name('updatepassword');
+});
 
 Route::prefix('social')->group(function () {
     Route::get('auth/{driver}', [SocialController::class, 'redirectSocialite']);
@@ -38,10 +47,7 @@ Route::prefix('list')->name('list.')->middleware('auth')->group(function () {
     Route::post('editItem/{id}',[UserListController::class,'editItem'])->name('editItem');
     Route::get('destoryItem/{id}',[UserListController::class,'destoryItem'])->name('destoryItem');
     Route::get('delete/{id}',[UserListController::class,'delete'])->name('delete');
-
 });
-
-
 
 Route::prefix('user')->middleware('auth')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('root');

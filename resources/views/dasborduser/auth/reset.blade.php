@@ -1,4 +1,5 @@
-
+@extends('dasborduser.layouts.app')
+@section('content')
 @section('title')
     @lang('translation.Recover_Password') 2
 @endsection
@@ -10,10 +11,10 @@
 
 
 @section('content')
+@include('dasborduser.include.error')
+
     <body class="auth-body-bg">
         <body style="background-color: #fafafa !important">
-          
-
                 <div class="container">
                     <div class="d-flex col-l-6 justify-content-center">
                         <div class="auth-full-page-content p-md-5 p-4"
@@ -30,7 +31,7 @@
                                     </div>
                                     <h5 class="text-danger">Reset Password</h5>
                                     <div class="mt-4">
-                                        <form class="form-horizontal" method="post" >
+                                        <form class="form-horizontal" action="{{ route('forget.checkuser') }}" method="post">
                                             @csrf
                                             <div class="input-group mb-3">
                                                 <input name="email" type="email"
@@ -42,17 +43,17 @@
                                                         <strong>{{ $message }}</strong>
                                                 </span> @enderror
                                             </div>
-                                    
-                                           
+
+
 
                                             <div class="mt-3 d-grid">
                                                 <button class="btn btn-danger waves-effect waves-light"
                                                     type="submit">Reset</button>
                                             </div>
-                                           
+
                                         </form>
                                         <div class="mt-5 text-center">
-                                             <p>You Remember It ? <a href="{{ url('login') }}" class="font-weight-medium text-primary"> Sign In here</a> </p> 
+                                             <p>You Remember It ? <a href="{{ url('/') }}" class="font-weight-medium text-primary"> Sign In here</a> </p>
                                             </p>
                                         </div>
                                     </div>

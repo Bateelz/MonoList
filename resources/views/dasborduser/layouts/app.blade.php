@@ -10,7 +10,7 @@
     <meta content="MonoList" name="description" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('/assets/images/monolist_icon.png') }}">
-  
+
     <!-- Bootstrap Css -->
     <link href="{{  URL::asset('/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -20,7 +20,6 @@
 </head>
 
 @yield('body')
-
 @yield('content')
 
 <!-- JAVASCRIPT -->
