@@ -101,7 +101,7 @@
                                             </div><!-- /.modal-dialog -->
                                         </div><!-- /.modal -->
 
-                                          <div id="sharelist" class="modal fade bs-example-modal-lg"
+                                          <div id="sharelist" class="modal fade bs-example-modal-lg sharelist"
                                             tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                                             aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
@@ -132,9 +132,9 @@
                                                     </li>
                                                   </ul>
                                             </div>
- 
-                                    
-                                                    </div> 
+
+
+                                                    </div>
                                                      </div><!-- /.modal-content -->
                                             </div><!-- /.modal-dialog -->
                                         </div><!-- /.modal -->
