@@ -16,10 +16,10 @@ class ForgetPassword extends Mailable
      *
      * @return void
      */
-    protected $token;
-    public function __construct($token)
+    public $data;
+    public function __construct($data)
     {
-        $this->token=$token;
+        $this->data=$data;
     }
 
     /**
@@ -29,6 +29,6 @@ class ForgetPassword extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('email.forgetPassword');
     }
 }
