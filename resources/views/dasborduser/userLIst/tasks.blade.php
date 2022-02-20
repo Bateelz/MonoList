@@ -28,8 +28,11 @@
                                 <a class="dropdown-item" type="button" data-toggle="modal"
                                     data-target="#renamelist">Rename</a>
                                 <a class="dropdown-item" href="{{ route('list.delete',$item->id) }}">Delete</a>
-                                <a class="dropdown-item edittask-details" type="button" id="sharelist"
-                                 data-bs-toggle="modal" data-bs-target="#sharelist{{ $item->id }}">Share List</a>
+                                <a class="dropdown-item edittask-details"  id="taskedit"
+                                 data-bs-toggle="modal"
+                                 data-bs-target=".bs-example-modal-lg"
+                                 >Share List
+                                </a>
                             </div>
                         </div> <!-- end dropdown -->
                         <h4 class="card-title mb-4">{{ $item->name }}</h4>
