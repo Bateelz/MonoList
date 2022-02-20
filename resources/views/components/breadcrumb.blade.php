@@ -1,5 +1,5 @@
 <!-- start page title -->
-<div class="row" style="background-color:#db4c3f; margin-top:0px;">
+<div class="row" style="background-color:#e30000; margin-top:0px;">
     <div class="col-12">
         <br>
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">

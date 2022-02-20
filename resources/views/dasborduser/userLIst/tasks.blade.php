@@ -18,6 +18,7 @@
         @foreach ($list as $item)
         <div class="col-lg-4">
             <div class="card">
+                
                 <div class="card-body">
                     @php $list_item=App\Models\User\UserItem::where('list_id',$item->id)->get(); @endphp
                         <div class="dropdown float-end">
@@ -35,7 +36,12 @@
                                 </a>
                             </div>
                         </div> <!-- end dropdown -->
+                        
                         <h4 class="card-title mb-4">{{ $item->name }}</h4>
+
+                       
+                      
+                      
                         <div id="task-1">
                             <div id="upcoming-task" class="pb-1 task-list">
                                 @if ($list_item)
@@ -92,7 +98,7 @@
 
                                                             <div class="row">
                                                                 <div class="col-lg-10">
-                                                                    <button type="submit" class="btn btn-danger" >Update Item</button>
+                                                                    <button type="submit" class="btn btn-danger" style="background-color:#e30000" >Update Item</button>
                                                                 </div>
                                                             </div>
                                                         </form>
@@ -142,7 +148,7 @@
                                 @endif
                             </div>
                             <div class="text-center d-grid">
-                                <a href="javascript: void(0);" class="btn btn-danger waves-effect waves-light"
+                                <a href="javascript: void(0);" class="btn btn-danger waves-effect waves-light" style="background-color:#e30000"
                                     data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg-lg{{ $item->id }}"
                                     data-id="{{ $item->id }}"><i class="mdi mdi-plus me-1"></i> Add New Item</a>
                             </div>
@@ -168,7 +174,7 @@
 
                                                 <div class="row">
                                                     <div class="col-lg-10">
-                                                        <button type="submit" class="btn btn-danger" id="addtask">Add Item</button>
+                                                        <button type="submit" class="btn btn-danger" style="background-color:#e30000" id="addtask">Add Item</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -182,6 +188,27 @@
         </div>
         @endforeach
         <!-- end col -->
+        <div class="col-lg-4">
+            <div class="card">
+                <form method='POST' action="{{ route('list.store.list') }}">
+                <input type="hidden" name="color" value="color">
+                        <input type="hidden" name="type" value="type">
+                @csrf
+                <div id="newElementId">
+                </div>
+
+                
+              </form>   
+                <div class="card-body">
+                    <div class="text-center d-grid">
+                                <a href="javascript: void(0);" id="newbtnId"  onclick="createNewElement();" class="btn btn-danger waves-effect waves-light" style="background-color:#e30000"
+                                    data-bs-toggle="modal1" data-bs-target=".bs-example-modal-lg-lg"
+                                    data-id="modalForm"><i class="mdi mdi-plus me-1"></i> Add New List</a>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- end row -->
@@ -189,6 +216,23 @@
 @section('script')
     <!-- dragula plugins -->
     <script src="{{ URL::asset('/assets/libs/dragula/dragula.min.js') }}"></script>
+    <script>
+    function createNewElement() {
+    // First create a DIV element.
+	var txtNewInputBox = document.createElement('div');
+    document.getElementById("newbtnId").style.display="none";
+
+
+    // Then add the content (a new input box) of the element.
+	txtNewInputBox.innerHTML = "<input type='text' name='name'  class='form-control' placeholder='Enter List Name'>";
+
+
+    // Finally put it where it is supposed to appear.
+	document.getElementById("newElementId").appendChild(txtNewInputBox);
+}
+
+
+    
 
     <!-- jquery-validation -->
     <script src="{{ URL::asset('/assets/libs/jquery-validation/jquery-validation.min.js') }}"></script>

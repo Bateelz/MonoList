@@ -28,7 +28,7 @@
                                                 class="auth-logo-light">
                                         </a>
                                     </div>
-                                    <h5 class="text-danger">Login</h5>
+                                    <h5 class="text-danger" style="color:#e30000">Login</h5>
                                     <div class="mt-4">
                                         <form class="form-horizontal" method="post" >
                                             @csrf
@@ -67,7 +67,7 @@
                                            
 
                                             <div class="mt-3 d-grid">
-                                                <button class="btn btn-danger waves-effect waves-light"
+                                                <button class="btn btn-danger waves-effect waves-light" style="background-color:#e30000"
                                                     type="submit">Reset</button>
                                             </div>
                                            

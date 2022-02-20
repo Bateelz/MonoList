@@ -18,7 +18,7 @@
                                                 class="auth-logo-light">
                                         </a>
                                     </div>
-                                    <h5 class="text-danger">Login</h5>
+                                    <h5 class="text-danger" style="color:#e30000">Login</h5>
                                     <div class="mt-4">
                                         <form class="form-horizontal" method="post" action="{{ route('login') }}">
                                             {{ csrf_field() }}
@@ -60,7 +60,7 @@
                                             </div>
                                             <a href="{{ url('forget') }}" class="text-muted">Forgot password?</a>
                                             <div class="mt-3 d-grid">
-                                                <button class="btn btn-danger waves-effect waves-light"
+                                                <button class="btn btn-danger waves-effect waves-light" style="background-color:#e30000"
                                                     type="submit">LogIn</button>
                                             </div>
                                             <div class="mt-4 text-center">
@@ -72,7 +72,7 @@
                                                       </a>
                                                     </li>
                                                     <li class="list-inline-item">
-                                                      <a href="{{ url('social/auth/apple') }}" class="social-list-item bg-info text-white border-info">
+                                                      <a href="{{ url('social/auth/apple') }}" class="social-list-item bg-dark text-white border-dark">
                                                         <i class="mdi mdi-apple"></i>
                                                       </a>
                                                     </li>
@@ -86,7 +86,7 @@
                                         </form>
                                         <div class="mt-5 text-center">
                                             <p>Don't have an account ? <a href="{{ url('register') }}"
-                                                    class="fw-medium text-danger"> Signup now </a>
+                                                    class="fw-medium text-danger" style="color:#e30000"> Signup now </a>
                                             </p>
                                         </div>
                                     </div>
