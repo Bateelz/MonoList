@@ -28,8 +28,8 @@
                                 <a class="dropdown-item" type="button" data-toggle="modal"
                                     data-target="#renamelist">Rename</a>
                                 <a class="dropdown-item" href="{{ route('list.delete',$item->id) }}">Delete</a>
-                                <a class="dropdown-item edittask-details" type="button" id=""
-                                 data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg sharelist ">Share List</a>
+                                <a class="dropdown-item edittask-details" type="button" id="sharelist"
+                                 data-bs-toggle="modal" data-bs-target="#sharelist{{ $item->id }}">Share List</a>
                             </div>
                         </div> <!-- end dropdown -->
                         <h4 class="card-title mb-4">{{ $item->name }}</h4>
@@ -98,9 +98,10 @@
                                             </div><!-- /.modal-dialog -->
                                         </div><!-- /.modal -->
 
-                                          <div id="sharelist" class="modal fade bs-example-modal-lg sharelist"
-                                            tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-                                            aria-hidden="true">
+
+                                            <div id="sharelist{{ $data->id}}" class="modal fade bs-example-modal-lg"
+                                                tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                                                aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header ">
