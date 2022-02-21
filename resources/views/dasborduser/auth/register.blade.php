@@ -24,7 +24,7 @@
                                         </a>
                                     </div>
             
-                <h5 class="text-danger text-center">Register account</h5>
+                <h5 class="text-danger text-center" style="color:#e30000">Register account</h5>
             
               <div class="mt-4">
                 <form method="POST" class="form-horizontal" action="{{ route('Registration') }}" enctype="multipart/form-data">
@@ -63,7 +63,7 @@
                                                 </div>
                                             </div>
                   <div class="mt-3 d-grid">
-                    <button class="btn btn-danger waves-effect waves-light" type="submit">Register</button>
+                    <button class="btn btn-danger waves-effect waves-light" style="background-color:#e30000" type="submit">Register</button>
                   </div>
                   <div class="mt-4 text-center">
                     <h5 class="font-size-14 mb-3">Sign up using</h5>
@@ -74,7 +74,7 @@
                         </a>
                       </li>
                       <li class="list-inline-item">
-                        <a href="#" class="social-list-item bg-info text-white border-info">
+                        <a href="#" class="social-list-item bg-dark text-white border-dark">
                           <i class="mdi mdi-apple"></i>
                         </a>
                       </li>
@@ -86,7 +86,7 @@
                     </ul>
                   </div>
                   <div class="mt-3 text-center">
-                    <p>Already have an account ? <a href="{{ url('/') }}" class="fw-medium text-danger"> Login</a>
+                    <p>Already have an account ? <a href="{{ url('/') }}" class="fw-medium text-danger" style="color:#e30000"> Login</a>
                     </p>
                     </div>
                                     </div>
