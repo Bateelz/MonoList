@@ -23,7 +23,7 @@ class ForgetPasswordController extends Controller
          $return_details=  DB::table('password_resets')->where('token',$token)->first();
          if($return_details){
              $user=User::where('email',$return_details->email)->first();
-             return view('dasborduser.auth.confirm',compact('user'));
+             return view('dasborduser.auth.confirm',compact('user','token'));
          }
           abort(404);
        }
@@ -37,10 +37,13 @@ class ForgetPasswordController extends Controller
               $token = Str::random(64);
               DB::table('password_resets')->insert([
               'email' => $request->email,
+              'token' => $token,'created_at' => Carbon::now()]);
+            $data=
+            [
+              'email'=>$request->email,
               'token' => $token,
-              'created_at' => Carbon::now()
-            ]);
-               Mail::to($request->email)->send(new ForgetPassword($token));
+            ];
+               Mail::to($request->email)->send(new ForgetPassword($data));
               return back()->with('success','We have e-mailed your password reset link!');
           }
           return back()->with('error','not Found User');
@@ -59,8 +62,9 @@ class ForgetPasswordController extends Controller
               return back()->withInput()->with('error', 'Invalid token!');
           }
           $user = User::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
-          DB::table('password_resets')->where(['email'=> $request->email])->delete();
-          Mail::to($user->email)->send(new SuccessForgetPassword());
-          return redirect('/login')->with('message', 'Your password has been changed!');
+        //   DB::table('password_resets')->where(['token'=> $request->token])->delete();
+          $data=['email'=>$request->email];
+          Mail::to($request->email)->send(new SuccessForgetPassword($data));
+          return redirect('/')->with('message', 'Your password has been changed!');
       }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashbordUser\Auth\AppleLoginController;
 use App\Http\Controllers\DashbordUser\Auth\ForgetPasswordController;
 use App\Http\Controllers\DashbordUser\Auth\LoginController;
 use App\Http\Controllers\DashbordUser\Auth\RegisterController;
@@ -31,11 +32,13 @@ Route::prefix('forget')->name('forget.')->group(function()
     Route::post('forget',[ForgetPasswordController::class,'forget'])->name('checkuser');
     Route::get('resetpassword/{token}',[ForgetPasswordController::class,'showResetPasswordForm'])->name('returnformupdate');
     Route::post('update',[ForgetPasswordController::class,'forget'])->name('updatepassword');
+    Route::post('updatepassword',[ForgetPasswordController::class,'submitResetPasswordForm'])->name('submitResetPasswordForm');
 });
 
 Route::prefix('social')->group(function () {
     Route::get('auth/{driver}', [SocialController::class, 'redirectSocialite']);
     Route::get('auth/callback/{driver}', [SocialController::class, 'handleCallback']);
+    Route::get('apple/login',[AppleLoginController::class,'appleLogin']);
 });
 
 Route::prefix('list')->name('list.')->middleware('auth')->group(function () {

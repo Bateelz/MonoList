@@ -30,7 +30,7 @@
                                     data-target="#renamelist">Rename</a>
                                 <a class="dropdown-item" href="{{ route('list.delete',$item->id) }}">Delete</a>
                                 <a class="dropdown-item edittask-details"  id="taskedit"
-                                 data-bs-toggle="modal" 
+                                 data-bs-toggle="modal"
                                  data-bs-target=".bs-example-modal-lg"
                                  >Share List
                                 </a>
@@ -107,9 +107,10 @@
                                             </div><!-- /.modal-dialog -->
                                         </div><!-- /.modal -->
 
-                                          <div id="sharelist" class="modal fade bs-example-modal-lg sharelist"
-                                            tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-                                            aria-hidden="true">
+
+                                            <div id="sharelist{{ $data->id}}" class="modal fade bs-example-modal-lg"
+                                                tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                                                aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header ">
