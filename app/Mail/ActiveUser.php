@@ -16,9 +16,11 @@ class ActiveUser extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $data;
+    public function __construct($data)
     {
         //
+        $this->data=$data;
     }
 
     /**
@@ -28,6 +30,6 @@ class ActiveUser extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('email.activeUser');
     }
 }

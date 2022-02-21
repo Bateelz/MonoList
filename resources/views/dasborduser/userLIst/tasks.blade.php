@@ -18,7 +18,7 @@
         @foreach ($list as $item)
         <div class="col-lg-4">
             <div class="card">
-                
+
                 <div class="card-body">
                     @php $list_item=App\Models\User\UserItem::where('list_id',$item->id)->get(); @endphp
                         <div class="dropdown float-end">
@@ -36,12 +36,12 @@
                                 </a>
                             </div>
                         </div> <!-- end dropdown -->
-                        
+
                         <h4 class="card-title mb-4">{{ $item->name }}</h4>
 
-                       
-                      
-                      
+
+
+
                         <div id="task-1">
                             <div id="upcoming-task" class="pb-1 task-list">
                                 @if ($list_item)
@@ -198,8 +198,8 @@
                 <div id="newElementId">
                 </div>
 
-                
-              </form>   
+
+              </form>
                 <div class="card-body">
                     <div class="text-center d-grid">
                                 <a href="javascript: void(0);" id="newbtnId"  onclick="createNewElement();" class="btn btn-danger waves-effect waves-light" style="background-color:#e30000"
@@ -222,19 +222,12 @@
     // First create a DIV element.
 	var txtNewInputBox = document.createElement('div');
     document.getElementById("newbtnId").style.display="none";
-
-
     // Then add the content (a new input box) of the element.
 	txtNewInputBox.innerHTML = "<input type='text' name='name'  class='form-control' placeholder='Enter List Name'>";
-
-
     // Finally put it where it is supposed to appear.
 	document.getElementById("newElementId").appendChild(txtNewInputBox);
 }
-
-
-    
-
+</script>
     <!-- jquery-validation -->
     <script src="{{ URL::asset('/assets/libs/jquery-validation/jquery-validation.min.js') }}"></script>
 
