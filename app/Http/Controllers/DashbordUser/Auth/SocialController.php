@@ -21,7 +21,7 @@ class SocialController extends Controller
 
     public function handleCallback($driver)
     {
-            $user = Socialite::driver($driver)->user();
+            $user = Socialite::driver($driver)->stateless()->user();
             return $user;
             if ($driver  === 'google') {
                 $finduser = User::where('email', $user->email)->first();
