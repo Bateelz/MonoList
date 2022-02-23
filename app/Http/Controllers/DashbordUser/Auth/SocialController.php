@@ -14,7 +14,6 @@ class SocialController extends Controller
 {
     public function redirectSocialite($driver)
     {
-
         return Socialite::driver($driver)->redirect();
     }
 
