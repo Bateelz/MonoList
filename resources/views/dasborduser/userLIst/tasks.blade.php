@@ -36,8 +36,9 @@
                                 </a>
                             </div>
                         </div> <!-- end dropdown -->
-                        
+                        <div >
                         <h4 class="card-title mb-4">{{ $item->name }}</h4>
+                       </div>
 
                        
                       
@@ -116,7 +117,7 @@
                                                     <div class="mt-4 justify-content-center">
                                                 <h5 class="font-size-20 mb-3">Share List</h5>
                                                 <ul class="list-inline">
-                                                    <li class="list-inline-item ">
+                                                    <li class="list-inline-item">
                                                       <a href="#" class="social-list-item bg-primary text-white border-primary">
                                                         <i class="mdi mdi-file-pdf"></i>
                                                       </a>
@@ -132,8 +133,8 @@
                                                       </a>
                                                     </li>
                                                     <li class="list-inline-item">
-                                                      <a href="#" class="social-list-item bg-secondary text-white border-secondary">
-                                                        <i class="mdi mdi-link"> </i>
+                                                      <a href="#" value="Copy Url" onclick="Copy();"  class="social-list-item bg-secondary text-white border-secondary " >
+                                                        <i class="mdi mdi-link" ></i>
                                                       </a>
                                                     </li>
                                                   </ul>
@@ -230,9 +231,39 @@
     // Finally put it where it is supposed to appear.
 	document.getElementById("newElementId").appendChild(txtNewInputBox);
 }
+</script>
+// function Copy() {
+//   link=window.location.href;
+//   console.log(link);
+//   //window.open(link);
+// } 
+</script>
+<script>
+$('#share').click(function() {
+   $.ajax({
+      url: '',
+      data: {
+         format: 'json'
+      },
+      error: function() {
+         alert('An error has occurred');
+      },
+      dataType: 'jsonp',
+      success: function(data) {
+         link=window.location.href;
+         newlink=link.concat(data);
+         window.open(newlink);
+
+      },
+      type: 'GET'
+   });
+});
+
+</script>
 
 
-    
+
+
 
     <!-- jquery-validation -->
     <script src="{{ URL::asset('/assets/libs/jquery-validation/jquery-validation.min.js') }}"></script>

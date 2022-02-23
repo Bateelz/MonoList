@@ -28,7 +28,7 @@
                                                 class="auth-logo-light">
                                         </a>
                                     </div>
-                                    <h5 class="text-danger" style="color:#e30000">Login</h5>
+                                    <h5 class="text-danger" style="color:#e30000"></h5>
                                     <div class="mt-4">
                                         <form class="form-horizontal" method="post" >
                                             @csrf
