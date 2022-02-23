@@ -51,6 +51,7 @@ Route::prefix('list')->name('list.')->middleware(['auth','CheckUserStatus'])->gr
     Route::post('editItem/{id}',[UserListController::class,'editItem'])->name('editItem');
     Route::get('destoryItem/{id}',[UserListController::class,'destoryItem'])->name('destoryItem');
     Route::get('delete/{id}',[UserListController::class,'delete'])->name('delete');
+    Route::post('rename/{id}',[UserListController::class,'editname'])->name('editname');
     Route::get('get_link_list/{list_id}',[UserListController::class,'get_link_list'])->name('get_link_list');
 });
 

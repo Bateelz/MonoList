@@ -60,9 +60,17 @@ class UserListController extends Controller
         if($userlink){
             $userlink->end_code=Carbon::now()->addDay(3);
             $userlink->save();
-            return $userlink->code;
+            return response()->json(['msg'=>'success','data'=>$userlink->code],200);
         }
-         return "notFound";
+         return response()->json(['msg'=>'notfound','data'=>null],422);
+        }
+
+        public function show_list($token)
+        {
+            $userlink=UserLink::where('code',$token)->first();
+            $list_id=$userlink ? $userlink->list_id:null;
+            $userList=UserList::where('id',$list_id)->first();
+
         }
 
 
@@ -74,7 +82,7 @@ class UserListController extends Controller
         if($list){
             $list->name=$request->name;
             $list->save();
-            return redirect()->route('list.list')->withSuccess('Create List Success');
+            return redirect()->route('list.list')->withSuccess('Rename List Success');
         }
         return redirect()->route('list.list')->withSuccess('NotFoune List');
       }
