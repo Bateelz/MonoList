@@ -47,9 +47,9 @@ class SocialController extends Controller
                 Auth::login($newUser);
                 return redirect()->route('root');
             }
-        } catch (Exception $e) {
-            dd($e->getMessage());
-        }
+        } catch (\Throwable $th) {
+            throw $th;
+         }
     }
 
 }
