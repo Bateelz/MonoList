@@ -20,6 +20,7 @@ class SocialController extends Controller
 
     public function handleCallback($driver)
     {
+        try {
             $user = Socialite::driver($driver)->user();
             return $user;
             if ($driver  === 'google') {
@@ -45,5 +46,9 @@ class SocialController extends Controller
                 Auth::login($newUser);
                 return redirect()->route('root');
             }
-        }
+        } catch (\Throwable $th) {
+            throw $th;
+         }
+    }
+
 }

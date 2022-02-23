@@ -4,9 +4,12 @@ namespace App\Http\Controllers\DashbordUser\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\User\UserItem;
+use App\Models\User\UserLink;
 use App\Models\User\UserList;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class UserListController extends Controller
 {
@@ -40,8 +43,35 @@ class UserListController extends Controller
       $list->color=$request->color;
       $list->user_id=Auth::id();
       $list->save();
+
+      // Todo:Add Code List
+      $code=Str::random(22);
+      $userlink=new UserLink();
+      $userlink->user_id=Auth::id();
+      $userlink->list_id= $list->id;
+      $userlink->code=$code;
+      $userlink->end_code=null;
+      $userlink->save();
       return redirect()->route('list.list')->withSuccess('Create List Success');
     }
+
+    public function get_link_list($list_id){
+        $userlink=UserLink::where('user_id',Auth::id())->where('list_id',$list_id)->first();
+        if($userlink){
+            $userlink->end_code=Carbon::now()->addDay(3);
+            $userlink->save();
+            return response()->json(['msg'=>'success','data'=>$userlink->code],200);
+        }
+         return response()->json(['msg'=>'notfound','data'=>null],422);
+        }
+
+        public function show_list($token)
+        {
+            $userlink=UserLink::where('code',$token)->first();
+            $list_id=$userlink ? $userlink->list_id:null;
+            $userList=UserList::where('id',$list_id)->first();
+
+        }
 
 
     public function editname(Request $request,$id){
@@ -52,7 +82,7 @@ class UserListController extends Controller
         if($list){
             $list->name=$request->name;
             $list->save();
-            return redirect()->route('list.list')->withSuccess('Create List Success');
+            return redirect()->route('list.list')->withSuccess('Rename List Success');
         }
         return redirect()->route('list.list')->withSuccess('NotFoune List');
       }
@@ -104,4 +134,6 @@ class UserListController extends Controller
         }
         return redirect()->route('list.list')->withSuccess('NotFoune List');
       }
+
+
 }

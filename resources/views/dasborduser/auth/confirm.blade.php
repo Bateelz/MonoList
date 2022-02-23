@@ -1,4 +1,4 @@
-
+@extends('dasborduser.layouts.app')
 @section('title')
     @lang('translation.Recover_Password') 2
 @endsection
@@ -12,7 +12,7 @@
 @section('content')
     <body class="auth-body-bg">
         <body style="background-color: #fafafa !important">
-          
+
 
                 <div class="container">
                     <div class="d-flex col-l-6 justify-content-center">
@@ -30,50 +30,41 @@
                                     </div>
                                     <h5 class="text-danger" style="color:#e30000"></h5>
                                     <div class="mt-4">
-                                        <form class="form-horizontal" method="post" >
+                                        <form class="form-horizontal" method="post" action="{{ route('forget.submitResetPasswordForm') }}" >
                                             @csrf
+                                            <input type="hidden" name="token" value="{{ $token }}">
                                             <div class="input-group mb-3">
-                                                <input name="email"type="hidden"
+                                                <input name="email"type="text"
                                                     class="form-control @error('email') is-invalid @enderror"
-                                                    value="{{ old('email') }}"
-                                                    placeholder="Enter Email"  autofocus>
-                                                @error('email')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                </span> @enderror
+                                                    value="{{ $user->email }}"
+                                                    placeholder="Enter Email"  readonly>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <input type="password"
-                                                    class="form-control @error('email') is-invalid @enderror"
-                                                    value="{{ old('email') }}"
-                                                    placeholder="New Password"  autofocus>
-                                                @error('email')
+                                                <input type="password" name="password"
+                                                    class="form-control @error('password') is-invalid @enderror" placeholder="New Password"  autofocus>
+                                                @error('password')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                 </span> @enderror
                                             </div>
 
                                             <div class="input-group mb-3">
-                                                <input type="password"
-                                                    class="form-control @error('email') is-invalid @enderror"
-                                                    value="{{ old('email') }}"
+                                                <input type="password"  name="password_confirmation"
+                                                    class="form-control @error('password_confirmation') is-invalid @enderror"
+                                                    value="{{ old('password_confirmation') }}"
                                                     placeholder="Confirm Password"  autofocus>
-                                                @error('email')
+                                                @error('password_confirmation')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                 </span> @enderror
                                             </div>
-                                    
-                                           
-
                                             <div class="mt-3 d-grid">
                                                 <button class="btn btn-danger waves-effect waves-light" style="background-color:#e30000"
                                                     type="submit">Reset</button>
                                             </div>
-                                           
                                         </form>
                                         <div class="mt-5 text-center">
-                                             <p>You Remember It ? <a href="{{ url('login') }}" class="font-weight-medium text-primary"> Sign In here</a> </p> 
+                                             <p>You Remember It ? <a href="{{ url('login') }}" class="font-weight-medium text-primary"> Sign In here</a> </p>
                                             </p>
                                         </div>
                                     </div>

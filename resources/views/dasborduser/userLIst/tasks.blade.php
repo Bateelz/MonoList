@@ -18,7 +18,7 @@
         @foreach ($list as $item)
         <div class="col-lg-4">
             <div class="card">
-                
+
                 <div class="card-body">
                     @php $list_item=App\Models\User\UserItem::where('list_id',$item->id)->get(); @endphp
                         <div class="dropdown float-end">
@@ -30,7 +30,7 @@
                                     data-target="#renamelist">Rename</a>
                                 <a class="dropdown-item" href="{{ route('list.delete',$item->id) }}">Delete</a>
                                 <a class="dropdown-item edittask-details"  id="taskedit"
-                                 data-bs-toggle="modal" 
+                                 data-bs-toggle="modal"
                                  data-bs-target=".bs-example-modal-lg"
                                  >Share List
                                 </a>
@@ -40,9 +40,9 @@
                         <h4 class="card-title mb-4">{{ $item->name }}</h4>
                        </div>
 
-                       
-                      
-                      
+
+
+
                         <div id="task-1">
                             <div id="upcoming-task" class="pb-1 task-list">
                                 @if ($list_item)
@@ -81,7 +81,7 @@
                                                             style="display: none;">Update item</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
-                                                    </div>
+                                                    </div> 
                                                     <div class="modal-body">
                                                         <form method="Post"
                                                             action="{{ route('list.editItem', $data->id ) }}" role="form">
@@ -108,9 +108,10 @@
                                             </div><!-- /.modal-dialog -->
                                         </div><!-- /.modal -->
 
-                                          <div id="sharelist" class="modal fade bs-example-modal-lg sharelist"
-                                            tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-                                            aria-hidden="true">
+
+                                            <div id="sharelist{{ $data->id}}" class="modal fade bs-example-modal-lg"
+                                                tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                                                aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header ">
@@ -118,22 +119,22 @@
                                                 <h5 class="font-size-20 mb-3">Share List</h5>
                                                 <ul class="list-inline">
                                                     <li class="list-inline-item">
-                                                      <a href="#" class="social-list-item bg-primary text-white border-primary">
+                                                      <a href="#" class="social-list-item bg-primary text-white border-primary" id="share">
                                                         <i class="mdi mdi-file-pdf"></i>
                                                       </a>
                                                     </li>
                                                     <li class="list-inline-item">
-                                                      <a href="#" class="social-list-item bg-success text-white border-success">
+                                                      <a href="#" class="social-list-item bg-success text-white border-success" id="share">
                                                         <i class="mdi mdi-whatsapp" ></i>
                                                       </a>
                                                     </li>
                                                     <li class="list-inline-item">
-                                                      <a href="#" class="social-list-item bg-danger text-white border-danger">
+                                                      <a href="#" class="social-list-item bg-danger text-white border-danger" id="share">
                                                         <i class="mdi mdi-google"> </i>
                                                       </a>
                                                     </li>
                                                     <li class="list-inline-item">
-                                                      <a href="#" value="Copy Url" onclick="Copy();"  class="social-list-item bg-secondary text-white border-secondary " >
+                                                      <a href="#" value="Copy Url"  id="share" class="social-list-item bg-secondary text-white border-secondary " >
                                                         <i class="mdi mdi-link" ></i>
                                                       </a>
                                                     </li>
@@ -198,8 +199,8 @@
                 <div id="newElementId">
                 </div>
 
-                
-              </form>   
+
+              </form>
                 <div class="card-body">
                     <div class="text-center d-grid">
                                 <a href="javascript: void(0);" id="newbtnId"  onclick="createNewElement();" class="btn btn-danger waves-effect waves-light" style="background-color:#e30000"
@@ -222,12 +223,8 @@
     // First create a DIV element.
 	var txtNewInputBox = document.createElement('div');
     document.getElementById("newbtnId").style.display="none";
-
-
     // Then add the content (a new input box) of the element.
 	txtNewInputBox.innerHTML = "<input type='text' name='name'  class='form-control' placeholder='Enter List Name'>";
-
-
     // Finally put it where it is supposed to appear.
 	document.getElementById("newElementId").appendChild(txtNewInputBox);
 }
@@ -241,7 +238,7 @@
 <script>
 $('#share').click(function() {
    $.ajax({
-      url: '',
+      url: '{{ route('list.get_link_list', $data->list_id ) }}',
       data: {
          format: 'json'
       },

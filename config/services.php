@@ -41,11 +41,4 @@ return [
         'client_secret' => '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',
         'redirect' => 'https://monolist.io/social/auth/callback/google',
     ],
-
-    'apple' => [
-        'App ID' => '7V4W85NG7C.com.monolists.monolist',
-        'client_secret' => 'MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgzXNNcEhqGH75wNafYQCcdl3v3tQfRCU+TTt9zNBrdkigCgYIKoZIzj0DAQehRANCAAR6XI6fKrRls1PzG9RB0LeE/rNS9nt91BlQg4Pjpn7mPBQ4DdhEnflHyusl/J9ozne7TWJE1kdZujfS73/f4VWu',
-        'redirect' => 'https://monolist.io/social/auth/callback/apple',
-    ],
-
 ];
