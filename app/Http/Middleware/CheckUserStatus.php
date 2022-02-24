@@ -17,11 +17,11 @@ class CheckUserStatus
      */
     public function handle(Request $request, Closure $next)
     {
-        // if(Auth::user()->status == 1)
-        // {
-        //     return $next($request);
-        // }
-        //     return redirect('/');
+        if(Auth::user()->status == 1)
+        {
+            return $next($request);
+        }
+            return redirect('/');
 
     }
 }
