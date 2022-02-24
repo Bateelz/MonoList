@@ -7,7 +7,7 @@
   @section('content')
   <body class="auth-body-bg">
         <body style="background-color: #fafafa !important">
-          
+
 
                 <div class="container">
                     <div class="d-flex col-l-6 justify-content-center">
@@ -23,14 +23,14 @@
                                                 class="auth-logo-light">
                                         </a>
                                     </div>
-            
+
                 <h5 class="text-danger text-center" style="color:#e30000">Register account</h5>
-            
+
               <div class="mt-4">
                 <form method="POST" class="form-horizontal" action="{{ route('Registration') }}" enctype="multipart/form-data">
-                   @csrf 
+                    @csrf
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('first_name') }}" id="firstname" name="first_name" autofocus required placeholder="Firstname"> 
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('first_name') }}" id="firstname" name="first_name" autofocus required placeholder="Firstname">
                     @error('firstname') <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                     </span> @enderror
@@ -41,7 +41,7 @@
                     </span> @enderror
                   </div>
                   <div class="input-group mb-3">
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email') }}" name="email" placeholder="Email" autofocus required> 
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email') }}" name="email" placeholder="Email" autofocus required>
                      @error('email') <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                     </span> @enderror
