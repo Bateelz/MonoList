@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LoginController::class, 'index']);
 Route::post('login', [LoginController::class, 'Login'])->name('login');
 Route::get('register', [RegisterController::class, 'index']);
-Route::post('Registration', [RegisterController::class, 'Registration'])->name('Registration');
+Route::post('registration', [RegisterController::class, 'Registration'])->name('Registration');
 Route::get('logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
 Route::get('activeuser/{id}',[LoginController::class,'active_user'])->name('activeuser');
 

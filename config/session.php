@@ -155,7 +155,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN','https://www.monolist.io/'),
+    'domain' => env('SESSION_DOMAIN',null),
 
     /*
     |--------------------------------------------------------------------------

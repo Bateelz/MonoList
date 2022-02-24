@@ -21,7 +21,7 @@
                                     <h5 class="text-danger" style="color:#e30000">Login</h5>
                                     <div class="mt-4">
                                         <form class="form-horizontal" method="post" action="{{ route('login') }}">
-                                            {{ csrf_field() }}
+                                           @csrf
                                             <div class=" input-group mb-3">
                                                 <input name="email" type="email"
                                                     class="form-control @error('email') is-invalid @enderror"

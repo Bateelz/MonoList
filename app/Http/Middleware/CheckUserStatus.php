@@ -21,7 +21,6 @@ class CheckUserStatus
         {
             return $next($request);
         }
-
             return redirect('/');
 
     }
