@@ -56,6 +56,7 @@ class UserListController extends Controller
     }
 
     public function get_link_list($list_id){
+        
         $userlink=UserLink::where('user_id',Auth::id())->where('list_id',$list_id)->first();
         if($userlink){
             $userlink->end_code=Carbon::now()->addDay(3);
