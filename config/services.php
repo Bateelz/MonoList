@@ -31,14 +31,14 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => '2812402659069257',
-        'client_secret' => '3ca4ad86262998101f2783c4a7240728',
+        'client_id' => '1132076184204492',
+        'client_secret' => 'd9f4a4d696eed1c00ea7d2bc25f33528',
         'redirect' => 'https://monolist.io/social/auth/callback/facebook',
     ],
 
     'google' => [
-        'client_id' => '1086884301623-0ku0psbdi7fk9p3oa9vdarnvc140qjn1.apps.googleusercontent.com',
-        'client_secret' => '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',
+        'client_id' => '584174852874-010m814jp4asi9kh76jmupsgi9eqslrq.apps.googleusercontent.com',
+        'client_secret' => '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',
         'redirect' => 'https://monolist.io/social/auth/callback/google',
     ],
 ];

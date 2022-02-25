@@ -17,38 +17,25 @@ class SocialController extends Controller
         return Socialite::driver($driver)->redirect();
     }
 
-
     public function handleCallback($driver)
     {
-        try {
-            $user = Socialite::driver($driver)->user();
-            return $user;
-            if ($driver  === 'google') {
-                $finduser = User::where('email', $user->email)->first();
-            }
-
-            if ($driver  === 'facebook') {
-                $finduser = User::where('email', $user->email)->first();
-            }
-            if ($finduser) {
-                Auth::login($finduser);
-                return redirect()->route('root');
-            } else {
-                $newUser = User::create([
-                    'first_name' => $user->name,
-                    'last_name'=>$user->name,
-                    'user_name'=>$user->name,
-                    'email' => $user->email,
-                    'google_id' => $driver == "google" ? $user->id : null,
-                    'facebook_id' => $driver == "facebook" ? $user->id : null,
-                    'password' => Hash::make('123456789')
-                ]);
-                Auth::login($newUser);
-                return redirect()->route('root');
-            }
-        } catch (\Throwable $th) {
-            throw $th;
-         }
+        $userSocial = Socialite::driver($driver)->stateless()->user();
+        $users      = User::where(['email' => $userSocial->getEmail()])->first();
+        if ($users) {
+            Auth::login($users);
+            return redirect()->route('root')->with('success', 'You are login from' . $driver);
+        } else {
+            $newUser = User::create([
+                'first_name' => $userSocial->getName(),
+                'last_name' => $userSocial->getName(),
+                'user_name' => $userSocial->getName(),
+                'email' => $userSocial->getEmail(),
+                'google_id' => $driver == "google" ? $userSocial->getId() : null,
+                'facebook_id' => $driver == "facebook" ? $userSocial->getId() : null,
+                'password' => Hash::make('123456789')
+            ]);
+            Auth::login($newUser);
+            return redirect()->route('root');
+        }
     }
-
 }
