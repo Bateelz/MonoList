@@ -37,8 +37,8 @@ return [
     ],
 
     'google' => [
-        'client_id' => '1086884301623-0ku0psbdi7fk9p3oa9vdarnvc140qjn1.apps.googleusercontent.com',
-        'client_secret' => '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',
+        'client_id' => '584174852874-010m814jp4asi9kh76jmupsgi9eqslrq.apps.googleusercontent.com',
+        'client_secret' => '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',
         'redirect' => 'https://monolist.io/social/auth/callback/google',
     ],
 ];
