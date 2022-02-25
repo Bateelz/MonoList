@@ -26,19 +26,67 @@
                                 <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" type="button" data-toggle="modal"
-                                    data-target="#renamelist">Rename</a>
+                                <a class="dropdown-item" type="button" id="renamebtn" data-toggle="modal" 
+                                                           data-bs-toggle="modal"
+                                                            data-bs-target=".bs-example-modal-lg{{ $item->id }}"
+                                                            data-id="{{ $item->id }}" 
+                                    onclick="rename()" >Rename</a>
                                 <a class="dropdown-item" href="{{ route('list.delete',$item->id) }}">Delete</a>
                                 <a class="dropdown-item edittask-details"  id="taskedit"
                                  data-bs-toggle="modal"
-                                 data-bs-target=".bs-example-modal-lg"
+                                 data-bs-target=".bs-example-modal-l{{$item->id}}"
                                  >Share List
                                 </a>
                             </div>
                         </div> <!-- end dropdown -->
-                        <div >
-                        <h4 class="card-title mb-4">{{ $item->name }}</h4>
-                       </div>
+                        <div id="sharelist" class="modal fade bs-example-modal-l{{$item->id}}"
+                                                tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                                                aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header ">
+                                                    <div class="mt-4 justify-content-center">
+                                                <h5 class="font-size-20 mb-3">Share List</h5>
+                                                <ul class="list-inline">
+                                                <input type="hidden" name="listid" value="{{ $item->id }}">
+                                                    <li class="list-inline-item">
+                                                      <a class="social-list-item bg-primary text-white border-primary" id="share">
+                                                        <i class="mdi mdi-file-pdf"></i>
+                                                      </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                      <a  class="social-list-item bg-success text-white border-success" id="share">
+                                                        <i class="mdi mdi-whatsapp" ></i>
+                                                      </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                      <a  class="social-list-item bg-danger text-white border-danger" id="share">
+                                                        <i class="mdi mdi-google"> </i>
+                                                      </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                      <a value="Copy Url" onclick="share({{$item['id']}})" id="share" class="social-list-item bg-secondary text-white border-secondary">
+                                                        <i class="mdi mdi-link" ></i>
+                                                      </a>
+                                                    </li>
+                                                  </ul>
+                                            </div>
+
+
+                                                    </div>
+                                                     </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
+                         
+                        
+                        <form method="Post" action="{{ route('list.editname',$item->id) }}" role="form">
+                        <input type="hidden" name="list_id" value="{{ $item->id }}">
+                         @csrf
+                         <div id="rename" data-id="{{ $item->id }}" >
+                         </div>
+                        </form>
+                        <h4 class="card-title mb-4" id="listname">{{ $item->name }}</h4>
+                       
 
 
 
@@ -109,43 +157,7 @@
                                         </div><!-- /.modal -->
 
 
-                                            <div id="sharelist{{ $data->id}}" class="modal fade bs-example-modal-lg"
-                                                tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-                                                aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header ">
-                                                    <div class="mt-4 justify-content-center">
-                                                <h5 class="font-size-20 mb-3">Share List</h5>
-                                                <ul class="list-inline">
-                                                    <li class="list-inline-item">
-                                                      <a href="#" class="social-list-item bg-primary text-white border-primary" id="share">
-                                                        <i class="mdi mdi-file-pdf"></i>
-                                                      </a>
-                                                    </li>
-                                                    <li class="list-inline-item">
-                                                      <a href="#" class="social-list-item bg-success text-white border-success" id="share">
-                                                        <i class="mdi mdi-whatsapp" ></i>
-                                                      </a>
-                                                    </li>
-                                                    <li class="list-inline-item">
-                                                      <a href="#" class="social-list-item bg-danger text-white border-danger" id="share">
-                                                        <i class="mdi mdi-google"> </i>
-                                                      </a>
-                                                    </li>
-                                                    <li class="list-inline-item">
-                                                      <a href="#" value="Copy Url"  id="share" class="social-list-item bg-secondary text-white border-secondary " >
-                                                        <i class="mdi mdi-link" ></i>
-                                                      </a>
-                                                    </li>
-                                                  </ul>
-                                            </div>
-
-
-                                                    </div>
-                                                     </div><!-- /.modal-content -->
-                                            </div><!-- /.modal-dialog -->
-                                        </div><!-- /.modal -->
+                                            
                                         @endforeach
                                 @endif
                             </div>
@@ -188,13 +200,54 @@
                 </div>
             </div>
         </div>
+        <script>
+    function rename() {
+    // First create a DIV element.
+	var txtNewInputBox = document.createElement('div');
+    document.getElementById("listname").style.display="none";
+    document.getElementById("renamebtn").style.display = "none";
+    
+    // Then add the content (a new input box) of the element.
+	txtNewInputBox.innerHTML = "<input type='text' name='name'  class='form-control' placeholder='Rename list'>";
+    
+    // Finally put it where it is supposed to appear.
+    // document.querySelector(`[data-id]`);
+	document.getElementById("rename").appendChild(txtNewInputBox);
+}
+</script>
+<script>
+function share(id) {
+    // var id= $("input[name=listid]").val();
+
+   $.ajax({
+      url: '/list/get_link_list/'+id,
+      data: {
+         format: 'json'
+      },
+      success: function share(data) {
+         link=window.location.href;
+         newlink=link.concat(data);
+         window.open(newlink);
+
+      },
+      error: function() {
+          console.log(id);
+         alert('An error has occurred');
+      },
+     
+      type: 'GET'
+   });
+};
+
+</script>
+
         @endforeach
         <!-- end col -->
         <div class="col-lg-4">
             <div class="card">
                 <form method='POST' action="{{ route('list.store.list') }}">
                 <input type="hidden" name="color" value="color">
-                        <input type="hidden" name="type" value="type">
+                <input type="hidden" name="type" value="type">
                 @csrf
                 <div id="newElementId">
                 </div>
@@ -229,33 +282,13 @@
 	document.getElementById("newElementId").appendChild(txtNewInputBox);
 }
 </script>
-// function Copy() {
+
+
+<!-- // function Copy() {
 //   link=window.location.href;
 //   console.log(link);
 //   //window.open(link);
-// } 
-</script>
-<script>
-$('#share').click(function() {
-   $.ajax({
-      url: '{{ route('list.get_link_list', $data->list_id ) }}',
-      data: {
-         format: 'json'
-      },
-      error: function() {
-         alert('An error has occurred');
-      },
-      dataType: 'jsonp',
-      success: function(data) {
-         link=window.location.href;
-         newlink=link.concat(data);
-         window.open(newlink);
-
-      },
-      type: 'GET'
-   });
-});
-
+// }  -->
 </script>
 
 
