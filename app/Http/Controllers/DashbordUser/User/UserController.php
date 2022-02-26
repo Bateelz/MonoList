@@ -58,15 +58,13 @@ class UserController extends Controller
 
         $user->update();
         if ($user) {
-            Session::flash('message', 'User Details Updated successfully!');
-            Session::flash('alert-class', 'alert-success');
+            alert()->success('User Details Updated successfully','Success');
             return response()->json([
                 'isSuccess' => true,
                 'Message' => "User Details Updated successfully!"
             ], 200); // Status code here
         } else {
-            Session::flash('message', 'Something went wrong!');
-            Session::flash('alert-class', 'alert-danger');
+            alert()->warning('Something went wrong!','Success');
             return response()->json([
                 'isSuccess' => true,
                 'Message' => "Something went wrong!"
@@ -82,6 +80,7 @@ class UserController extends Controller
         ]);
 
         if (!(Hash::check($request->get('current_password'), Auth::user()->password))) {
+            alert()->error('Your Current password does not matches with the password you provided. Please try again.','Not Match Password');
             return response()->json([
                 'isSuccess' => false,
                 'Message' => "Your Current password does not matches with the password you provided. Please try again."
@@ -91,15 +90,13 @@ class UserController extends Controller
             $user->password = Hash::make($request->get('password'));
             $user->update();
             if ($user) {
-                Session::flash('message', 'Password updated successfully!');
-                Session::flash('alert-class', 'alert-success');
+                alert()->success('Password updated successfully!','Success');
                 return response()->json([
                     'isSuccess' => true,
                     'Message' => "Password updated successfully!"
                 ], 200); // Status code here
             } else {
-                Session::flash('message', 'Something went wrong!');
-                Session::flash('alert-class', 'alert-danger');
+                alert()->warning('Something went wrong!','Warning');
                 return response()->json([
                     'isSuccess' => true,
                     'Message' => "Something went wrong!"

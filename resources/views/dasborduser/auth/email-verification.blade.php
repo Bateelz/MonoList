@@ -7,6 +7,7 @@
 @section('body')
 
     <body>
+        @include('sweet::alert')
     @endsection
 
     @section('content')
@@ -52,7 +53,7 @@
 
                             </div>
                         </div>
-                      
+
 
                     </div>
                 </div>

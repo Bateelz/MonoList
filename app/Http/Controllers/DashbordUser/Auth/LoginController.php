@@ -25,18 +25,22 @@ class LoginController extends Controller
             if(Auth::user()->status == 1){
                 return redirect('user/');
             }
-            return redirect("/")->withSuccess('The Account Is Not Active');
+            alert()->warning('The Account Is Not Active','Not Active Account');
+            return redirect("/");
         }
-        return redirect("/")->withSuccess('Login details are not valid');
+        alert()->error('Wrong Email Or Password','Invalid Data');
+        return redirect("/");
     }
 
     public function active_user($id){
         $user=User::where('id',$id)->update(['status'=>1]);
-        return redirect("/")->withSuccess('The Account Is Active');
+        alert()->success('The Account Is Active','Active Account');
+        return redirect("/");
      }
 
     public function logout(){
         Auth::logout();
+        alert()->success('Logout Success','Success Logout');
         return redirect('/');
     }
 }

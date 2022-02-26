@@ -23,6 +23,7 @@ class SocialController extends Controller
         $users      = User::where(['email' => $userSocial->getEmail()])->first();
         if ($users) {
             Auth::login($users);
+            alert()->success('You are login from' . $driver,'Success');
             return redirect()->route('root')->with('success', 'You are login from' . $driver);
         } else {
             $newUser = User::create([

@@ -3,6 +3,7 @@
     <body class="auth-body-bg">
         <body style="background-color: #fafafa !important">
 
+            @include('sweet::alert')
 
                 <div class="container">
                     <div class="d-flex col-l-6 justify-content-center">
@@ -24,7 +25,7 @@
                                            @csrf
                                             <div class=" input-group mb-3">
                                                 <input name="email" type="email"
-                                                    class="form-control @error('email') is-invalid @enderror"
+                                                    class="form-control"
                                                     value="{{ old('email') }}"
                                                     placeholder="Enter Email" autocomplete="email" autofocus>
                                                 @error('email')
@@ -35,9 +36,9 @@
                                             <div class="input-group mb-3">
 
                                                 <div
-                                                    class="input-group auth-pass-inputgroup @error('password') is-invalid @enderror">
+                                                    class="input-group auth-pass-inputgroup ">
                                                     <input type="password" name="password"
-                                                        class="form-control  @error('password') is-invalid @enderror"
+                                                        class="form-control  "
                                                          placeholder="Enter password"
                                                         aria-label="Password" aria-describedby="password-addon">
                                                     <button class="btn btn-light " type="button" id="password-addon">
@@ -72,7 +73,7 @@
                                                       </a>
                                                     </li>
                                                     <li class="list-inline-item">
-                                                      <a href="{{ url('social/auth/apple') }}" class="social-list-item bg-dark text-white border-dark">
+                                                      <a href="" class="social-list-item bg-dark text-white border-dark">
                                                         <i class="mdi mdi-apple"></i>
                                                       </a>
                                                     </li>

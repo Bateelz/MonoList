@@ -11,6 +11,8 @@
 
 @section('content')
     <body class="auth-body-bg">
+        @include('sweet::alert')
+
         <body style="background-color: #fafafa !important">
 
 
@@ -35,13 +37,13 @@
                                             <input type="hidden" name="token" value="{{ $token }}">
                                             <div class="input-group mb-3">
                                                 <input name="email"type="text"
-                                                    class="form-control @error('email') is-invalid @enderror"
+                                                    class="form-control "
                                                     value="{{ $user->email }}"
                                                     placeholder="Enter Email"  readonly>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="password" name="password"
-                                                    class="form-control @error('password') is-invalid @enderror" placeholder="New Password"  autofocus>
+                                                    class="form-control" placeholder="New Password"  autofocus>
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -50,7 +52,7 @@
 
                                             <div class="input-group mb-3">
                                                 <input type="password"  name="password_confirmation"
-                                                    class="form-control @error('password_confirmation') is-invalid @enderror"
+                                                    class="form-control"
                                                     value="{{ old('password_confirmation') }}"
                                                     placeholder="Confirm Password"  autofocus>
                                                 @error('password_confirmation')

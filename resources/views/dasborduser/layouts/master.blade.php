@@ -14,10 +14,12 @@
 <link href="{{ URL::asset('/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 <!-- App Css-->
 <link href="{{ URL::asset('/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 
 @section('body')
-    <body >
+
 @show
     <!-- Begin page -->
     <div id="layout-wrapper">
@@ -29,9 +31,9 @@
         <div class="main-content">
             <div class="page-content" style="padding: 70px 0px 60px;">
                 <div class="container-fluid">
-              
+
                     @yield('content')
-                    
+
                 </div>
                 <!-- container-fluid -->
             </div>

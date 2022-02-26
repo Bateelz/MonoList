@@ -8,7 +8,7 @@
   <body class="auth-body-bg">
         <body style="background-color: #fafafa !important">
 
-
+            @include('sweet::alert')
                 <div class="container">
                     <div class="d-flex col-l-6 justify-content-center">
                         <div class="auth-full-page-content p-md-5 p-4"
@@ -30,18 +30,18 @@
                 <form method="POST" class="form-horizontal" action="{{ route('Registration') }}" enctype="multipart/form-data">
                     @csrf
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('first_name') }}" id="firstname" name="first_name" autofocus required placeholder="Firstname">
+                    <input type="text" class="form-control " value="{{ old('first_name') }}" id="firstname" name="first_name" autofocus required placeholder="Firstname">
                     @error('firstname') <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                     </span> @enderror
                   </div>
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('last_name') }}" id="lastname" name="last_name" autofocus required placeholder="Lastname"> @error('firstname') <span class="invalid-feedback" role="alert">
+                    <input type="text" class="form-control " value="{{ old('last_name') }}" id="lastname" name="last_name" autofocus required placeholder="Lastname"> @error('firstname') <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                     </span> @enderror
                   </div>
                   <div class="input-group mb-3">
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email') }}" name="email" placeholder="Email" autofocus required>
+                    <input type="email" class="form-control" id="email" value="{{ old('email') }}" name="email" placeholder="Email" autofocus required>
                      @error('email') <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                     </span> @enderror
@@ -49,9 +49,9 @@
                   <div class="input-group mb-3">
 
                                                 <div
-                                                    class="input-group auth-pass-inputgroup @error('password') is-invalid @enderror">
+                                                    class="input-group auth-pass-inputgroup ">
                                                     <input type="password" name="password"
-                                                        class="form-control  @error('password') is-invalid @enderror"
+                                                        class="form-control"
                                                          placeholder="Enter password"
                                                         aria-label="Password" aria-describedby="password-addon">
                                                     <button class="btn btn-light " type="button" id="password-addon">

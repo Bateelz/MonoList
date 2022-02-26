@@ -8,6 +8,7 @@
 
 
 <div class="row">
+    @include('sweet::alert')
     <div class="col-xl-4">
         <div class="card overflow-hidden">
             <div class="bg-primary bg-soft">
