@@ -30,7 +30,7 @@ class ForgetPasswordController extends Controller
 
       public function forget(Request $request){
           $request->validate([
-              'email' => 'required|email|exists:users',
+              'email' => 'required|email',
           ]);
           $user=User::where('email',$request->email)->first();
           if ($user) {
@@ -44,9 +44,11 @@ class ForgetPasswordController extends Controller
               'token' => $token,
             ];
                Mail::to($request->email)->send(new ForgetPassword($data));
-              return back()->with('success','We have e-mailed your password reset link!');
+               alert()->success('We have e-mailed your password reset link!', 'Send Email');
+              return back();
           }
-          return back()->with('error','not Found User');
+          alert()->error('Not Found Email', 'Wrong Email');
+          return back();
       }
 
 

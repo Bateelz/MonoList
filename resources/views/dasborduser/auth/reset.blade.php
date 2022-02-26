@@ -11,9 +11,9 @@
 
 
 @section('content')
-@include('dasborduser.include.error')
 
     <body class="auth-body-bg">
+        @include('sweet::alert')
         <body style="background-color: #fafafa !important">
                 <div class="container">
                     <div class="d-flex col-l-6 justify-content-center">
@@ -35,7 +35,7 @@
                                             @csrf
                                             <div class="input-group mb-3">
                                                 <input name="email" type="email"
-                                                    class="form-control @error('email') is-invalid @enderror"
+                                                    class="form-control"
                                                     value="{{ old('email') }}"
                                                     placeholder="Enter Email" autocomplete="email" autofocus>
                                                 @error('email')

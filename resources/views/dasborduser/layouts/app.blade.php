@@ -18,11 +18,12 @@
     <link href="{{  URL::asset('/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="{{  URL::asset('/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
-@yield('body')
-@yield('content')
-
+<body>
+    @include('sweet::alert')
+    @yield('content')
 <!-- JAVASCRIPT -->
 <script src="{{  URL::asset('assets/libs/jquery/jquery.min.js') }}"></script>
 <script src="{{  URL::asset('assets/libs/bootstrap/bootstrap.min.js') }}"></script>

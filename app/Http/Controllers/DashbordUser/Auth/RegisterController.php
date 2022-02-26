@@ -39,6 +39,7 @@ class RegisterController extends Controller
         ];
         Mail::to($request->email)->send(new ActiveUser($data));
         Auth::login($user,true);
+        alert()->success('Register Success','Register Success');
         return redirect('user/');
     }
 

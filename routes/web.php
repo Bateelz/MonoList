@@ -26,6 +26,7 @@ Route::get('register', [RegisterController::class, 'index']);
 Route::post('registration', [RegisterController::class, 'Registration'])->name('Registration');
 Route::get('logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
 Route::get('activeuser/{id}',[LoginController::class,'active_user'])->name('activeuser');
+Route::get('show_list/{token}',[UserListController::class,'show_list']);
 
 Route::prefix('forget')->name('forget.')->group(function()
 {

@@ -2,6 +2,7 @@
 @section('title') @lang('translation.Profile') @endsection
 
 @section('content')
+@include('sweet::alert')
     <div class="row justify-content-center">
         <div class="col-xl-12">
             <div class="card overflow-hidden">
@@ -53,28 +54,28 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">UserName :</th>
-                                    <td> <input type="text" class="form-control @error('user_name') is-invalid @enderror"
+                                    <td> <input type="text" class="form-control "
                                             value="{{ Auth::user()->user_name }}"  name="user_name"
                                             autofocus placeholder="Enter user name">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">FirstName :</th>
-                                    <td> <input type="text" class="form-control @error('first_name') is-invalid @enderror"
+                                    <td> <input type="text" class="form-control"
                                             value="{{ Auth::user()->first_name }}"  name="first_name"
                                             autofocus placeholder="Enter first name">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">LastName :</th>
-                                    <td> <input type="text" class="form-control @error('last_name') is-invalid @enderror"
+                                    <td> <input type="text" class="form-control"
                                             value="{{ Auth::user()->last_name }}" name="last_name"
                                             autofocus placeholder="Enter last name">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Gender :</th>
-                                    <td><select class="form-control @error('gender') is-invalid @enderror" id="gender"
+                                    <td><select class="form-control" id="gender"
                                             name="gender">
                                             <option value="{{ Auth::user()->gender }}">{{ Auth::user()->gender }}
                                             </option>
@@ -84,7 +85,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Birthdate :</th>
-                                    <td><input type="text" class="form-control @error('age') is-invalid @enderror"
+                                    <td><input type="text" class="form-control"
                                             value="{{ Auth::user()->age }}" id="age" name="age" autofocus
                                             placeholder="Enter age"></td>
 
@@ -92,14 +93,14 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">E-mail :</th>
-                                    <td> <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                    <td> <input type="text" class="form-control "
                                             value="{{ Auth::user()->email }}" id="email" name="email" autofocus
                                             placeholder="Enter email">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Phone Number :</th>
-                                    <td> <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                    <td> <input type="text" class="form-control"
                                             value="{{ Auth::user()->phone_number }}" id="phone_number"
                                             name="phone_number" autofocus placeholder="Enter phone number">
                                     </td>
@@ -144,10 +145,10 @@
                             <input type="hidden" value="{{ Auth::user()->id }}" id="data_id">
                             <div class="input-group mb-3">
 
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="useremail"
+                                <input type="email" class="form-control " id="useremail"
                                     value="{{ Auth::user()->email }}" name="email" placeholder="Enter email" autofocus>
                                 <div class="text-danger" id="emailError" data-ajax-feedback="email"></div>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                <input type="text" class="form-control "
                                     value="{{ Auth::user()->user_name }}" id="user_name" name="user_name" autofocus
                                     placeholder="Enter username">
                                 <div class="text-danger" id="nameError" data-ajax-feedback="name"></div>
@@ -158,21 +159,21 @@
 
                             <div class="input-group mb-3">
 
-                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                <input type="text" class="form-control "
                                     value="{{ Auth::user()->first_name }}" id="first_name" name="first_name" autofocus
                                     placeholder="Enter first name">
-                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                <input type="text" class="form-control "
                                     value="{{ Auth::user()->last_name }}" id="last_name" name="last_name" autofocus
                                     placeholder="Enter last name">
 
                             </div>
 
-                            <input type="password" class="form-control @error('name') is-invalid @enderror"
+                            <input type="password" class="form-control "
                                 value="{{ Auth::user()->password }}" id="password" name="password" autofocus
                                 placeholder="Enter password">
                             <br>
                             <div class="text-danger" id="nameError" data-ajax-feedback="name"></div>
-                            <select class="form-control @error('name') is-invalid @enderror" id="gender" name="gender"
+                            <select class="form-control " id="gender" name="gender"
                                 autofocus required placeholder="Enter Phone number">
                                 <option value="{{ Auth::user()->phone_number }}">
                                 {{ Auth::user()->gender }}</option>
@@ -183,7 +184,7 @@
                     </div>
                     <!-- <div class="input-group mb-3">
 
-                         <input type="password" class="form-control @error('name') is-invalid @enderror" value="{{ Auth::user()->password }}" id="password" name="password" autofocus placeholder="Enter password">
+                         <input type="password" class="form-control " value="{{ Auth::user()->password }}" id="password" name="password" autofocus placeholder="Enter password">
                          <div class="text-danger" id="nameError" data-ajax-feedback="name"></div>
                      </div> -->
 
