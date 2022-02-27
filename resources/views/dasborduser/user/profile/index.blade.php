@@ -107,6 +107,14 @@
                                 </tr>
 
                                 <tr>
+                                    <th scope="row">Upload Image :</th>
+                                    <td> <input type="file" class="form-control"
+                                            value="{{ Auth::user()->avatar }}" id="avatar"
+                                            name="avatar" autofocus>
+                                    </td>
+                                </tr>
+
+                                <tr>
 
                                     <td>  <button class="btn btn-danger waves-effect waves-light UpdateProfile"
                                         style="position: absolute;right: 28px;margin-top: -9px;"
@@ -154,20 +162,14 @@
                                 <div class="text-danger" id="nameError" data-ajax-feedback="name"></div>
 
                             </div>
-
-
-
                             <div class="input-group mb-3">
-
                                 <input type="text" class="form-control "
                                     value="{{ Auth::user()->first_name }}" id="first_name" name="first_name" autofocus
                                     placeholder="Enter first name">
                                 <input type="text" class="form-control "
                                     value="{{ Auth::user()->last_name }}" id="last_name" name="last_name" autofocus
                                     placeholder="Enter last name">
-
                             </div>
-
                             <input type="password" class="form-control "
                                 value="{{ Auth::user()->password }}" id="password" name="password" autofocus
                                 placeholder="Enter password">
@@ -187,9 +189,6 @@
                          <input type="password" class="form-control " value="{{ Auth::user()->password }}" id="password" name="password" autofocus placeholder="Enter password">
                          <div class="text-danger" id="nameError" data-ajax-feedback="name"></div>
                      </div> -->
-
-
-
                     <div class="input-group mb-3">
 
                         <div class="input-group mb-3 ">
