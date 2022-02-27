@@ -157,4 +157,14 @@ class UserListController extends Controller
         alert()->error('Not Found List','Not Found');
         return redirect()->route('list.list');
     }
+
+    public function is_complete($item){
+        $useritem=UserItem::where('id',$item)->first();
+        if($useritem){
+           $useritem->is_complete=1;
+           $useritem->save();
+           return response()->json(['msg'=>'success','data'=>$useritem],200);
+        }
+        return response()->json(['msg'=>'faild','data'=>null],422);
+    }
 }

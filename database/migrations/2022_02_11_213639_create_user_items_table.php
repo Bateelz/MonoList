@@ -18,6 +18,7 @@ class CreateUserItemsTable extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('list_id')->constrained('user_lists')->cascadeOnDelete();
             $table->string('name');
+            $table->boolean('is_complete')->default(false);
             $table->softDeletes('deleted_at',0);
             $table->timestamps();
         });
