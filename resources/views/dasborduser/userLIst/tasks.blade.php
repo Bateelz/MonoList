@@ -21,7 +21,7 @@
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        @php $list_item=App\Models\User\UserItem::where('list_id',$item->id)->get(); @endphp
+                        @php $list_item=App\Models\User\UserItem::where('list_id',$item->id)->orderBy('is_complete','asc')->get(); @endphp
                         <div class="dropdown float-end">
                             <a href="#" class="dropdown-toggle arrow-none" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
