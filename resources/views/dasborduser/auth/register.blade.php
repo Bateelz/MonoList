@@ -24,27 +24,22 @@
                                         </a>
                                     </div>
 
-                <h5 class="text-danger text-center" style="color:#e30000">Register account</h5>
+                                    <h5 class="text-danger" style="color:#e30000">Register</h5>
 
               <div class="mt-4">
                 <form method="POST" class="form-horizontal" action="{{ route('Registration') }}" enctype="multipart/form-data">
                     @csrf
                   <div class="input-group mb-3">
                     <input type="text" class="form-control " value="{{ old('first_name') }}" id="firstname" name="first_name" autofocus required placeholder="Firstname">
-                    @error('firstname') <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span> @enderror
+                  
                   </div>
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control " value="{{ old('last_name') }}" id="lastname" name="last_name" autofocus required placeholder="Lastname"> @error('firstname') <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span> @enderror
+                    <input type="text" class="form-control " value="{{ old('last_name') }}" id="lastname" name="last_name" autofocus required placeholder="Lastname">
+                     
                   </div>
                   <div class="input-group mb-3">
                     <input type="email" class="form-control" id="email" value="{{ old('email') }}" name="email" placeholder="Email" autofocus required>
-                     @error('email') <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span> @enderror
+                    
                   </div>
                   <div class="input-group mb-3">
 
