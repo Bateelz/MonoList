@@ -85,7 +85,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Birthdate :</th>
-                                    <td><input type="text" class="form-control"
+                                    <td><input type="date" class="form-control"
                                             value="{{ Auth::user()->age }}" id="age" name="age" autofocus
                                             placeholder="Enter age"></td>
 
