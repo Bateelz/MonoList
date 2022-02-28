@@ -93,7 +93,7 @@
                                                                     style="padding:0;Margin:0;padding-bottom:10px">
                                                                     <h1
                                                                         style="Margin:0;line-height:46px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:46px;font-style:normal;font-weight:bold;color:#333333">
-                                                                        Forget Password </h1>
+                                                                        Your Password Has Changed </h1>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -230,7 +230,7 @@
                                 <table class="es-content-body" align="center" cellpadding="0" cellspacing="0"
                                     style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;width:600px"
                                     bgcolor="#FFFFFF">
-                                    <tr>
+                                    {{-- <tr>
                                         <td align="left" style="padding:20px;Margin:0">
                                             <table cellpadding="0" cellspacing="0" width="100%"
                                                 style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
@@ -259,7 +259,7 @@
                                                 </tr>
                                             </table>
                                         </td>
-                                    </tr>
+                                    </tr> --}}
                                 </table>
                             </td>
                         </tr>
