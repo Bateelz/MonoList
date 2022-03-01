@@ -362,7 +362,7 @@
                        if(data.data.is_complete==1){
                       
                      document.getElementById("label-name-"+data.data.id).style.textDecoration="line-through";
-                     window.location.reload();
+                    //  window.location.reload();
                    
                     
                    

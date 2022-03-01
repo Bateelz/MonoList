@@ -37,7 +37,7 @@
 
                                         <div class="avatar-md mx-auto">
                                             <div class="avatar-title rounded-circle bg-light">
-                                                <i class="bx bxs-envelope h1 mb-0 text-primary"></i>
+                                                <i class="bx bxs-envelope h1 mb-0 text-danger"></i>
                                             </div>
                                         </div>
                                         <div class="p-2 mt-4">
@@ -45,7 +45,7 @@
                                             <p>We have sent you verification email <span
                                                     class="fw-semibold">admin@admin.com</span>, Please check it</p>
                                             <div class="mt-4">
-                                                <a href="index" class="btn btn-success w-md">Verify email</a>
+                                                <a href="index" class="btn btn-success w-md" style="background-color:#e30000">Verify email</a>
                                             </div>
                                         </div>
                                     </div>
