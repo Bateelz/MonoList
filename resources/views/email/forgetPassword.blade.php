@@ -126,8 +126,8 @@
                                                                     <span class="es-button-border"
                                                                         style="border-style:solid;border-color:#2CB543;background:#e30000;border-width:0px;display:inline-block;border-radius:6px;width:auto"><a
                                                                             href="{{ route('forget.returnformupdate',$data['token']) }}" class="es-button" target="_blank"
-                                                                            style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:20px;border-style:solid;border-color:#e30000;border-width:10px 30px 10px 30px;display:inline-block;background:#e30000;border-radius:6px;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:normal;font-style:normal;line-height:24px;width:auto;text-align:center;border-left-width:30px;border-right-width:30px">CONFIRM
-                                                                            YOUR EMAIL</a></span>
+                                                                            style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:20px;border-style:solid;border-color:#e30000;border-width:10px 30px 10px 30px;display:inline-block;background:#e30000;border-radius:6px;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:normal;font-style:normal;line-height:24px;width:auto;text-align:center;border-left-width:30px;border-right-width:30px">
+                                                                            Reset Password</a></span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -243,7 +243,7 @@
                                                         <table cellpadding="0" cellspacing="0" width="100%"
                                                             role="presentation"
                                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
-                                                            <tr>
+                                                            {{-- <tr>
                                                                 <td align="center" class="es-infoblock"
                                                                     style="padding:0;Margin:0;line-height:14px;font-size:12px;color:#CCCCCC">
                                                                     <p
@@ -257,7 +257,7 @@
                                                                             style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#CCCCCC;font-size:12px"></a>
                                                                     </p>
                                                                 </td>
-                                                            </tr>
+                                                            </tr> --}}
                                                         </table>
                                                     </td>
                                                 </tr>

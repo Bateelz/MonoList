@@ -85,7 +85,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Birthdate :</th>
-                                    <td><input type="text" class="form-control"
+                                    <td><input type="date" class="form-control"
                                             value="{{ Auth::user()->age }}" id="age" name="age" autofocus
                                             placeholder="Enter age"></td>
 
@@ -103,6 +103,14 @@
                                     <td> <input type="text" class="form-control"
                                             value="{{ Auth::user()->phone_number }}" id="phone_number"
                                             name="phone_number" autofocus placeholder="Enter phone number">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Upload Image :</th>
+                                    <td> <input type="file" class="form-control"
+                                            value="{{ Auth::user()->avatar }}" id="avatar"
+                                            name="avatar" autofocus>
                                     </td>
                                 </tr>
 
@@ -154,20 +162,14 @@
                                 <div class="text-danger" id="nameError" data-ajax-feedback="name"></div>
 
                             </div>
-
-
-
                             <div class="input-group mb-3">
-
                                 <input type="text" class="form-control "
                                     value="{{ Auth::user()->first_name }}" id="first_name" name="first_name" autofocus
                                     placeholder="Enter first name">
                                 <input type="text" class="form-control "
                                     value="{{ Auth::user()->last_name }}" id="last_name" name="last_name" autofocus
                                     placeholder="Enter last name">
-
                             </div>
-
                             <input type="password" class="form-control "
                                 value="{{ Auth::user()->password }}" id="password" name="password" autofocus
                                 placeholder="Enter password">
@@ -187,9 +189,6 @@
                          <input type="password" class="form-control " value="{{ Auth::user()->password }}" id="password" name="password" autofocus placeholder="Enter password">
                          <div class="text-danger" id="nameError" data-ajax-feedback="name"></div>
                      </div> -->
-
-
-
                     <div class="input-group mb-3">
 
                         <div class="input-group mb-3 ">

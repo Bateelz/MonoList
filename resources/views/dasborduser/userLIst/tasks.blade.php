@@ -21,7 +21,9 @@
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        @php $list_item=App\Models\User\UserItem::where('list_id',$item->id)->get(); @endphp
+                        @php $list_item=App\Models\User\UserItem::where('list_id',$item->id)->where('is_complete',0)->get();
+                         $list_item_complete=App\Models\User\UserItem::where('list_id',$item->id)->where('is_complete',1)->get();
+                        @endphp
                         <div class="dropdown float-end">
                             <a href="#" class="dropdown-toggle arrow-none" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
@@ -45,7 +47,7 @@
                                             <h5 class="font-size-20 mb-3">Share List</h5>
                                             <ul class="list-inline">
                                                 <input type="hidden" name="listid" value="{{ $item->id }}">
-                                              
+
                                                 <li class="list-inline-item">
                                                     <a class="social-list-item bg-primary text-white border-primary"
                                                         id="share"  onclick="sharepdf({{ $item['id'] }})" >
@@ -86,8 +88,8 @@
                             <div id="rename" data-id="{{ $item->id }}">
                             </div>
                         </form>
-                       
-                     
+
+
                         <h4 class="card-title mb-4" id="listname">{{ $item->name }}</h4>
 
 
@@ -119,15 +121,15 @@
                                                 <div class="float-end ml-2 ">
                                                 </div>
                                                 <div>
-                                                      
+
                                                     <input class="form-check-input bg-danger" style="color:#e30000" onclick="complete({{ $data['id'] }})" id="task-name-{{ $data->id }}" type="checkbox" value="{{ $data->name }}"   />
                                                     <label  id="label-name-{{ $data->id }}"> {{ $data->name }} </label>
                                                 </div>
 
                                             </div>
                                         </div>
-                                        
-                                        
+
+
                                         <div id="editform{{ $data->id }}"
                                             class="modal fade bs-example-modal-lg{{ $data->id }}" tabindex="-1"
                                             role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -181,13 +183,14 @@
                             </div>
                             <div class="d-grid" >
                             <h4 class="card-title mb-4" id="listname">Complete task</h4>
-                            
+                            @foreach ($list_item_complete as $data )
                             <div id="completediv">
-                            <s>complete tast1</S>
-                            </div>   
+                            <s>{{ $data->name }}</S>
+                            </div>
+                            @endforeach
 
                             </div>
-                            
+
                             <div id="modalForm" class="modal fade bs-example-modal-lg-lg{{ $item->id }}" tabindex="-1"
                                 role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
@@ -217,7 +220,7 @@
                                                     </div>
                                                 </div>
 
-                                                
+
                                             </form>
                                         </div>
                                     </div><!-- /.modal-content -->
@@ -228,7 +231,7 @@
                 </div>
             </div>
 
-            
+
             <script>
                 function rename() {
                     // First create a DIV element.
@@ -252,7 +255,7 @@
                         },
                         success: function share(data) {
                             link = 'https://www.monolist.io/';
-                            
+
                             newlink = link.concat(data.data);
                             var inputc = document.body.appendChild(document.createElement("input"));
                             inputc.value = newlink;
@@ -273,7 +276,7 @@
             </script>
             <script>
             function sharewhats(id) {
-                  
+
                     $.ajax({
                         url: '/list/get_link_list/' + id,
                         data: {
@@ -281,9 +284,9 @@
                         },
                         success: function share(data) {
                             link = 'https://wa.me/?text=https://www.monolist.io/';
-                            
+
                             newlink = link.concat(data.data);
-                           
+
                             window.open(newlink);
 
                             alert("URL Copied.");
@@ -298,18 +301,18 @@
             </script>
               <script>
             function sharemail(id) {
-                  
+
                     $.ajax({
                         url: '/list/get_link_list/' + id,
                         data: {
                             format: 'json',
                         },
                         success: function share(data) {
-                            
+
                             link = "mailto:?subject=Monolist&body=Check out this site https://www.monolist.io/"+data.data;
                             window.open(link);
 
-      
+
                         },
                         error: function() {
                             console.log(id);
@@ -322,18 +325,18 @@
 
 <script>
             function sharepdf(id) {
-                  
+
                     $.ajax({
                         url: '/list/get_link_list/' + id,
                         data: {
                             format: 'json',
                         },
                         success: function share(data) {
-                            
+
                             link = "https://www.monolist.io/"+data.data"/pdf/uploaded.pdf";
                             window.open(link);
-                           
-      
+
+
                         },
                         error: function() {
                             console.log(id);
@@ -348,28 +351,28 @@
              <script>
 
                 function complete(id) {
-                  
-                  
+
+
                   $.ajax({
                       url: '/list/is_complete/' + id,
                       data: {
                           format: 'json',
                       },
                       success: function complete(data) {
-                       
-                       
-                       
+
+
+
                        if(data.data.is_complete==1){
-                      
+
                      document.getElementById("label-name-"+data.data.id).style.textDecoration="line-through";
-                    //  window.location.reload();
-                   
-                    
-                   
+                     window.location.reload();
+
+
+
 
                         }
 
-                       
+
                       },
                       error: function() {
                           console.log(id);
@@ -384,7 +387,7 @@
 
 
         @endforeach
-        
+
         <!-- end col -->
         <div class="col-lg-4">
             <div class="card">

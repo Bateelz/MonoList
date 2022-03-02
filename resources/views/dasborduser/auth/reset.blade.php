@@ -29,7 +29,7 @@
                                                 class="auth-logo-light">
                                         </a>
                                     </div>
-                                    <h5 class="text-danger">Reset Password</h5>
+                                    <h5 class="text-danger" style="color:#e30000">Reset Password</h5>
                                     <div class="mt-4">
                                         <form class="form-horizontal" action="{{ route('forget.checkuser') }}" method="post">
                                             @csrf
@@ -43,19 +43,38 @@
                                                         <strong>{{ $message }}</strong>
                                                 </span> @enderror
                                             </div>
+                                            
 
 
 
                                             <div class="mt-3 d-grid">
-                                                <button class="btn btn-danger waves-effect waves-light"
-                                                    type="submit">Reset</button>
+                                                <button class="btn btn-danger waves-effect waves-light" style="background-color:#e30000"
+                                                    type="submit">Reset Password</button>
                                             </div>
-
+                                            
                                         </form>
+                                       
                                         <div class="mt-5 text-center">
-                                             <p>You Remember It ? <a href="{{ url('/') }}" class="font-weight-medium text-primary"> Sign In here</a> </p>
+                                             <p>You Remember It  ? <a href="{{ url('/') }}" class="font-weight-medium text-danger" style="color:#e30000"> Sign In here</a> &nbsp &nbsp &nbsp</p>
                                             </p>
                                         </div>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
                                     </div>
                                 </div>
                             </div>
