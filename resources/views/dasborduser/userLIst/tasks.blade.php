@@ -48,12 +48,12 @@
                                             <ul class="list-inline">
                                                 <input type="hidden" name="listid" value="{{ $item->id }}">
 
-                                                <li class="list-inline-item">
+                                                <!-- <li class="list-inline-item">
                                                     <a class="social-list-item bg-primary text-white border-primary"
                                                         id="share"  onclick="sharepdf({{ $item['id'] }})" >
                                                         <i class="mdi mdi-file-pdf"></i>
                                                     </a>
-                                                </li>
+                                                </li> -->
                                                 <li class="list-inline-item">
                                                     <a class="social-list-item bg-success text-white border-success"
                                                         id="sharewhats" onclick="sharewhats({{ $item['id'] }})" >
@@ -120,7 +120,7 @@
                                                 </div> <!-- end dropdown -->
                                                 <div class="float-end ml-2 ">
                                                 </div>
-                                                <div>
+                                                <div > 
 
                                                     <input class="form-check-input bg-danger" style="color:#e30000" onclick="complete({{ $data['id'] }})" id="task-name-{{ $data->id }}" type="checkbox" value="{{ $data->name }}"   />
                                                     <label  id="label-name-{{ $data->id }}"> {{ $data->name }} </label>
@@ -181,10 +181,10 @@
                                     <br>
                                     <br>
                             </div>
-                            <div class="d-grid" >
+                            <div class="d-grid" id="loadform" >
                             <h4 class="card-title mb-4" id="listname">Complete task</h4>
                             @foreach ($list_item_complete as $data )
-                            <div id="completediv">
+                            <div class="completediv-{{ $data->id }}">
                             <s>{{ $data->name }}</S>
                             </div>
                             @endforeach
@@ -199,7 +199,7 @@
                                             <h5 class="modal-title mt-0 add-task-title">Add New item</h5>
                                         </div>
                                         <div class="modal-body">
-                                            <form method="Post" action="{{ route('list.addItem', $item->id) }}"
+                                            <form method="Post" action="{{ route('list.addItem', $item->id) }}" 
                                                 role="form">
                                                 @csrf
                                                 {{-- <input type="hidden" name="list_id" value="{{ $item->id }}"> --}}
@@ -349,30 +349,19 @@
 
 
              <script>
-
                 function complete(id) {
-
-
+                    // event.preventDefault();
                   $.ajax({
                       url: '/list/is_complete/' + id,
                       data: {
                           format: 'json',
                       },
-                      success: function complete(data) {
-
-
-
+                      success: function complete(data) { 
                        if(data.data.is_complete==1){
-
-                     document.getElementById("label-name-"+data.data.id).style.textDecoration="line-through";
-                     window.location.reload();
-
-
-
-
+                     var x=document.getElementById("label-name-"+data.data.id).style.textDecoration="line-through";
+                       
                         }
-
-
+                         return false;
                       },
                       error: function() {
                           console.log(id);
@@ -380,9 +369,14 @@
                       },
                       type: 'GET'
                   });
+                  
               };
+            
              </script>
 
+
+
+</script>
 
 
 
@@ -391,7 +385,7 @@
         <!-- end col -->
         <div class="col-lg-4">
             <div class="card">
-                <form method='POST' action="{{ route('list.store.list') }}">
+                <form method='POST' action="{{ route('list.store.list') }}" >
                     <input type="hidden" name="color" value="color">
                     <input type="hidden" name="type" value="type">
                     @csrf
@@ -424,8 +418,7 @@
             var txtNewInputBox = document.createElement('div');
             document.getElementById("newbtnId").style.display = "none";
             // Then add the content (a new input box) of the element.
-            txtNewInputBox.innerHTML =
-            "<input type='text' name='name'  class='form-control' placeholder='Enter List Name'>";
+            txtNewInputBox.innerHTML ="<input type='text' name='name'  class='form-control' placeholder='Enter List Name'>";
             // Finally put it where it is supposed to appear.
             document.getElementById("newElementId").appendChild(txtNewInputBox);
         }
