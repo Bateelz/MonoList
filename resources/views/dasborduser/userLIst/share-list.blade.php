@@ -73,6 +73,7 @@
 
     <body>
         <div class="widget-wrap">
+            <button class="btn btn-danger waves-effect waves-light button-print-or-save-document">Save as PDF</button>
             <img src="{{ asset('/assets/images/monolist_red_full_02.png') }}" alt="" height="18" class="auth-logo-light">
             <br>
             <br>
@@ -93,6 +94,18 @@
                 </a>
             </div>
         </div>
+        
 
     </body>
+    <script>
+        const buttonPrintOrSaveDocument = document.querySelector(".button-print-or-save-document");
+
+function printOrSave() {
+	window.print();
+}
+
+buttonPrintOrSaveDocument.addEventListener("click", printOrSave);
+
+
+</script>
 @endsection

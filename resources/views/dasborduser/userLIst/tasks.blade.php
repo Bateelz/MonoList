@@ -21,6 +21,7 @@
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
+                        
                         @php $list_item=App\Models\User\UserItem::where('list_id',$item->id)->where('is_complete',0)->get();
                          $list_item_complete=App\Models\User\UserItem::where('list_id',$item->id)->where('is_complete',1)->get();
                         @endphp
