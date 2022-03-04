@@ -53,8 +53,8 @@ class UserListController extends Controller
         $userlink->code = $code;
         $userlink->end_code = null;
         $userlink->save();
-        alert()->success('Create List Success','Create Success');
-        return redirect()->route('list.list')->withSuccess('Create List Success');
+        // alert()->success('Create List Success','Create Success');
+        return redirect()->route('list.list');
     }
 
     public function get_link_list($list_id)
@@ -66,7 +66,7 @@ class UserListController extends Controller
             $userlink->save();
             return response()->json(['msg' => 'success', 'data' =>"show_list".'/'. $userlink->code], 200);
         }
-        alert()->error('Not Found List','Not Found');
+        // alert()->error('Not Found List','Not Found');
         return response()->json(['msg' => 'notfound', 'data' => null], 422);
     }
 
@@ -97,11 +97,11 @@ class UserListController extends Controller
         if ($list) {
             $list->name = $request->name;
             $list->save();
-            alert()->success('Rename List Success','Success Rename');
-            return redirect()->route('list.list')->withSuccess('Rename List Success');
+            // alert()->success('Rename List Success','Success Rename');
+            return redirect()->route('list.list');
         }
-        alert()->error('Not Foune List','Not Found');
-        return redirect()->route('list.list')->withSuccess('NotFoune List');
+        // alert()->error('Not Foune List','Not Found');
+        return redirect()->route('list.list');
     }
 
     public function addItem(Request $request, $id)
@@ -114,7 +114,7 @@ class UserListController extends Controller
         $item->name = $request->name;
         $item->user_id = Auth::id();
         $item->save();
-        alert()->success('Add Item Success','Success Add');
+        // alert()->success('Add Item Success','Success Add');
         return back();
     }
 
@@ -125,10 +125,10 @@ class UserListController extends Controller
         if ($item) {
             $item->name = $request->name;
             $item->save();
-            alert()->success('Edit Item Success','Success Edit');
+            // alert()->success('Edit Item Success','Success Edit');
             return back();
         }
-        alert()->error('Not Found Item','Not Found');
+        // alert()->error('Not Found Item','Not Found');
         return back();
     }
 
@@ -138,10 +138,10 @@ class UserListController extends Controller
         $item = UserItem::where('id', $id)->first();
         if ($item) {
             $item->delete();
-            alert()->success('Delete Item Success','Delete Success');
-            return back()->withSuccess('Delete Item Success');
+            // alert()->success('Delete Item Success','Delete Success');
+            return back();
         }
-        alert()->error('Not Found Item','Not Found');
+        // alert()->error('Not Found Item','Not Found');
         return back();
     }
 
@@ -151,10 +151,10 @@ class UserListController extends Controller
         $list = UserList::where('id', $id)->first();
         if ($list) {
             $list->delete();
-            alert()->success('Delete List Success','Delete Success');
-            return redirect()->route('list.list');
+            // alert()->success('Delete List Success','Delete Success');
+            return redirect();
         }
-        alert()->error('Not Found List','Not Found');
+        // alert()->error('Not Found List','Not Found');
         return redirect()->route('list.list');
     }
 

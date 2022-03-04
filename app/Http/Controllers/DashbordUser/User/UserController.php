@@ -28,9 +28,9 @@ class UserController extends Controller
     {
 
         $request->validate([
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'user_name' => ['required', 'string', 'max:255'],
+            'fullname' => ['required', 'string', 'max:255'],
+            // 'last_name' => ['required', 'string', 'max:255'],
+            // 'user_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email'],
             'age' => ['required', 'date'],
             'avatar' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:1024'],
@@ -39,9 +39,7 @@ class UserController extends Controller
         ]);
 
         $user = User::find($id);
-        $user->first_name = $request->get('first_name');
-        $user->last_name = $request->get('last_name');
-        $user->user_name = $request->get('user_name');
+        $user->fullname = $request->get('fullname');
         $user->email = $request->get('email');
         $user->gender = $request->get('gender');
         $user->phone_number = $request->get('phone_number');
@@ -58,13 +56,13 @@ class UserController extends Controller
 
         $user->update();
         if ($user) {
-            alert()->success('User Details Updated successfully','Success');
+            // alert()->success('User Details Updated successfully','Success');
             return response()->json([
                 'isSuccess' => true,
                 'Message' => "User Details Updated successfully!"
             ], 200); // Status code here
         } else {
-            alert()->warning('Something went wrong!','Success');
+            // alert()->warning('Something went wrong!','Success');
             return response()->json([
                 'isSuccess' => true,
                 'Message' => "Something went wrong!"
