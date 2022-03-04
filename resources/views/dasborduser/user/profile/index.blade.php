@@ -53,26 +53,26 @@
                                 <input type="hidden" value="{{ Auth::user()->id }}" id="data_id">
                             <tbody>
                                 <tr>
-                                    <th scope="row">UserName :</th>
+                                    <th scope="row">FullName :</th>
                                     <td> <input type="text" class="form-control "
-                                            value="{{ Auth::user()->user_name }}"  name="user_name"
-                                            autofocus placeholder="Enter user name">
+                                            value="{{ Auth::user()->fullname }}"  name="fullname"
+                                            autofocus placeholder="Enter Full Name">
                                     </td>
                                 </tr>
-                                <tr>
+                                {{-- <tr>
                                     <th scope="row">FirstName :</th>
                                     <td> <input type="text" class="form-control"
                                             value="{{ Auth::user()->first_name }}"  name="first_name"
                                             autofocus placeholder="Enter first name">
                                     </td>
-                                </tr>
-                                <tr>
+                                </tr> --}}
+                                {{-- <tr>
                                     <th scope="row">LastName :</th>
                                     <td> <input type="text" class="form-control"
                                             value="{{ Auth::user()->last_name }}" name="last_name"
                                             autofocus placeholder="Enter last name">
                                     </td>
-                                </tr>
+                                </tr> --}}
                                 <tr>
                                     <th scope="row">Gender :</th>
                                     <td><select class="form-control" id="gender"

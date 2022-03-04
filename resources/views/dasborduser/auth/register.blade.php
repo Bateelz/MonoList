@@ -30,16 +30,16 @@
                 <form method="POST" class="form-horizontal" action="{{ route('Registration') }}" enctype="multipart/form-data">
                     @csrf
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control " value="{{ old('first_name') }}" id="firstname" name="first_name" autofocus required placeholder="Firstname">
-                  
+                    <input type="text" class="form-control " value="{{ old('fullname') }}" id="firstname" name="fullname" autofocus required placeholder="Fullname">
+
                   </div>
-                  <div class="input-group mb-3">
+                  {{-- <div class="input-group mb-3">
                     <input type="text" class="form-control " value="{{ old('last_name') }}" id="lastname" name="last_name" autofocus required placeholder="Lastname">
-                     
-                  </div>
+
+                  </div> --}}
                   <div class="input-group mb-3">
                     <input type="email" class="form-control" id="email" value="{{ old('email') }}" name="email" placeholder="Email" autofocus required>
-                    
+
                   </div>
                   <div class="input-group mb-3">
 

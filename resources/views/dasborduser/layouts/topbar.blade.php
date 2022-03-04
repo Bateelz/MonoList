@@ -3,7 +3,7 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="index" class="logo logo-dark">
+                <a href="{{ route('list.list') }}" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="{{ asset('/assets/images/monolist_red_full_02.png') }}" alt="" height="9">
                     </span>

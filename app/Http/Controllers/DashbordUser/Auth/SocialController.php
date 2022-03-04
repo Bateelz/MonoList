@@ -27,9 +27,9 @@ class SocialController extends Controller
             return redirect()->route('root')->with('success', 'You are login from' . $driver);
         } else {
             $newUser = User::create([
-                'first_name' => $userSocial->getName(),
-                'last_name' => $userSocial->getName(),
-                'user_name' => $userSocial->getName(),
+                'fullname' => $userSocial->getName(),
+                // 'last_name' => $userSocial->getName(),
+                // 'user_name' => $userSocial->getName(),
                 'email' => $userSocial->getEmail(),
                 'google_id' => $driver == "google" ? $userSocial->getId() : null,
                 'facebook_id' => $driver == "facebook" ? $userSocial->getId() : null,

@@ -120,7 +120,7 @@
                                                 </div> <!-- end dropdown -->
                                                 <div class="float-end ml-2 ">
                                                 </div>
-                                                <div > 
+                                                <div >
 
                                                     <input class="form-check-input bg-danger" style="color:#e30000" onclick="complete({{ $data['id'] }})" id="task-name-{{ $data->id }}" type="checkbox" value="{{ $data->name }}"   />
                                                     <label  id="label-name-{{ $data->id }}"> {{ $data->name }} </label>
@@ -199,7 +199,7 @@
                                             <h5 class="modal-title mt-0 add-task-title">Add New item</h5>
                                         </div>
                                         <div class="modal-body">
-                                            <form method="Post" action="{{ route('list.addItem', $item->id) }}" 
+                                            <form method="Post" action="{{ route('list.addItem', $item->id) }}"
                                                 role="form">
                                                 @csrf
                                                 {{-- <input type="hidden" name="list_id" value="{{ $item->id }}"> --}}
@@ -356,10 +356,14 @@
                       data: {
                           format: 'json',
                       },
-                      success: function complete(data) { 
+                      success: function complete(data) {
                        if(data.data.is_complete==1){
+                    //     setTimeout(function () {
+                    //     window.location.href = "{{ route('list.list') }}";
+                    // }, 1000);
                      var x=document.getElementById("label-name-"+data.data.id).style.textDecoration="line-through";
-                       
+                     window.location.href = "{{ route('list.list') }}";
+
                         }
                          return false;
                       },
@@ -369,9 +373,9 @@
                       },
                       type: 'GET'
                   });
-                  
+
               };
-            
+
              </script>
 
 
