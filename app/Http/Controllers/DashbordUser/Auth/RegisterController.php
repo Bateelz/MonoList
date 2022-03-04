@@ -20,15 +20,15 @@ class RegisterController extends Controller
     public function Registration(Request $request)
     {
         $request->validate([
-            'first_name' => 'required',
-            'last_name'=>'required',
+            'fullname' => 'required',
+            // 'last_name'=>'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
         ]);
         $user=new User();
-        $user->first_name=$request->first_name;
-        $user->last_name=$request->last_name;
-        $user->user_name=$request->first_name.' '.$request->last_name;
+        $user->fullname=$request->fullname;
+        // $user->last_name=$request->last_name;
+        // $user->user_name=$request->first_name.' '.$request->last_name;
         $user->email=$request->email;
         $user->password=Hash::make($request->password);
         $user->status=0;

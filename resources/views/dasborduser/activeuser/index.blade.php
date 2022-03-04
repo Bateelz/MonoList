@@ -31,10 +31,16 @@
                                     <div class="p-2 mt-4 text-center ">
                                         <h4>Verify your email</h4>
                                         <p>Please check your email for link <br>to verify your email address <span
-                                                class="fw-semibold"><br>admin@admin.com</span> Please check it</p>
+                                                class="fw-semibold"><br>{{ Auth::user()->email }}</span><br>Please check it</p>
                                         <div class="mt-3 d-grid">
-                                            <button class="btn btn-danger waves-effect waves-light"
-                                                style="background-color:#e30000" type="submit">Resend</button>
+
+                                        <p><a href="{{ url('sendactive',Auth::user()) }}"
+                                     class="btn btn-danger waves-effect waves-light"
+                                     type="submit" style="background-color:#e30000"> Resend </a>
+                                        </p>
+
+                                            {{-- <button class="btn btn-danger waves-effect waves-light"
+                                                style="background-color:#e30000" type="submit">Resend</button> --}}
                                         </div>
 
                                     </div>
@@ -53,13 +59,13 @@
             </div>
             <!-- end row -->
             </div>
-            <br>
+            {{-- <br>
             <br>
             <nav class="navbar navbar-light bg-light">
                 <div class="container text-center">
                     <p>&copy; 2022 Monolist</p>
                 </div>
-            </nav>
+            </nav> --}}
             <!-- end container-fluid -->
             </div>
         @endsection
