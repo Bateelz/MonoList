@@ -88,8 +88,6 @@
                                     <td><input type="date" class="form-control"
                                             value="{{ Auth::user()->age }}" id="age" name="age" autofocus
                                             placeholder="Enter age"></td>
-
-
                                 </tr>
                                 <tr>
                                     <th scope="row">E-mail :</th>

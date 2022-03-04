@@ -40,7 +40,7 @@ class LoginController extends Controller
 
     public function logout(){
         Auth::logout();
-        alert()->success('Logout Success','Success Logout');
+        // alert()->success('Logout Success','Success Logout');
         return redirect('/');
     }
 }
