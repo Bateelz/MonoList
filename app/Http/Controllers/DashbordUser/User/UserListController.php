@@ -31,7 +31,7 @@ class UserListController extends Controller
     }
 
     public function store(Request $request)
-    {   
+    {
         // return $request->all();
         $request->validate([
             'name' => 'required',
@@ -53,8 +53,14 @@ class UserListController extends Controller
         $userlink->code = $code;
         $userlink->end_code = null;
         $userlink->save();
-        // alert()->success('Create List Success','Create Success');
-        return redirect()->route('list.list');
+
+        $div="<h4 class='card-title mb-4' id='listitem'>'.$list->name.'</h4>";
+         $data=[
+             'name'=>$list->name,
+             'id'=>$list->id,
+         ];
+
+        return response()->json(['msg'=>'success','data'=>$data,'div'=>$div],200);
     }
 
     public function get_link_list($list_id)
@@ -147,14 +153,12 @@ class UserListController extends Controller
 
 
     public function delete($id)
-    { dd(id);
+    {
         $list = UserList::where('id', $id)->first();
         if ($list) {
             $list->delete();
-            // alert()->success('Delete List Success','Delete Success');
-            return redirect();
+            return back();
         }
-        // alert()->error('Not Found List','Not Found');
         return redirect()->route('list.list');
     }
 
