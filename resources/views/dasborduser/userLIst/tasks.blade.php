@@ -15,11 +15,13 @@
             List Board
         @endslot
     @endcomponent
-    <div class="row">
+    <div class="container-fluid">
+    <!-- <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2" style="overflow-x: auto;"> -->
+    <div class="row flex-nowrap"  style="max-height:80%; overflow-y: scroll;"  >
         @include('sweet::alert')
         @foreach ($list as $item)
-            <div class="col-lg-4">
-                <div class="card">
+            <div class="col-3">
+                <div class="card"  style="height:95%; overflow-y: scroll;">
                     <div class="card-body">
                         
                         @php $list_item=App\Models\User\UserItem::where('list_id',$item->id)->where('is_complete',0)->get();
@@ -173,7 +175,10 @@
                                         </div><!-- /.modal -->
                                     @endforeach
                                 @endif
+                                
                             </div>
+                             
+
                             <div class="text-center d-grid">
                                 <a href="javascript: void(0);" class="btn btn-danger waves-effect waves-light"
                                     style="background-color:#e30000" data-bs-toggle="modal"
@@ -186,11 +191,30 @@
                             <h4 class="card-title mb-4" id="listname">Complete task</h4>
                             @foreach ($list_item_complete as $data )
                             <div class="completediv-{{ $data->id }}">
-                            <s>{{ $data->name }}</S>
+                            <div class="card task-box" id="uptask-1">
+                                            <div class="card-body" id="card-name-{{ $data->id }}">
+                                                
+                                                <div class="float-end ml-2 ">
+                                                </div>
+                                                <div >
+
+                                                 
+                                                    <label  id="label-name-{{ $data->id }}">  <s>{{ $data->name }}</S> </label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                            
                             </div>
+
+
+                           
                             @endforeach
 
                             </div>
+
+                            
+                            
 
                             <div id="modalForm" class="modal fade bs-example-modal-lg-lg{{ $item->id }}" tabindex="-1"
                                 role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -231,6 +255,8 @@
                     </div>
                 </div>
             </div>
+            
+            
 
 
             <script>
@@ -239,6 +265,7 @@
                     var txtNewInputBox = document.createElement('div');
                     document.getElementById("listname").style.display = "none";
                     document.getElementById("renamebtn").style.display = "none";
+                    var dataID = element.getAttribute('data-id');
                     // Then add the content (a new input box) of the element.
                     txtNewInputBox.innerHTML = "<input type='text' name='name'  class='form-control' placeholder='Rename list'>";
                     // Finally put it where it is supposed to appear.
@@ -323,30 +350,41 @@
                     });
                 };
             </script>
-
+            
 <script>
-            function sharepdf(id) {
+                function list() {
+                    var name=document.getElementById("listnamein").value;
+                    console.log(name);
+                  
+                    var color=$("#color").val();
+                    var type=$("#type").val();
+                   
+                  $.ajax({
+                      url: '{{route('list.store.list')}}',
+                      method: 'post',
+                      data: {
+                          format: 'json',
+                          "_token":"{{csrf_token()}}",
+                          "name":name,
+                          "color":color,
+                          "type":type
 
-                    $.ajax({
-                        url: '/list/get_link_list/' + id,
-                        data: {
-                            format: 'json',
-                        },
-                        success: function share(data) {
+                      },
+                      success: function list(data) {
+                    //    alert("add sucssful");
+                      },
+                      error: function() {
+                          
+                          alert(name);
+                      },
+                     
+                  });
 
-                            link = "https://www.monolist.io/"+data.data"/pdf/uploaded.pdf";
-                            window.open(link);
+              };
+
+             </script>
 
 
-                        },
-                        error: function() {
-                            console.log(id);
-                            alert('An error has occurred');
-                        },
-                        type: 'GET'
-                    });
-                };
-            </script>
 
 
              <script>
@@ -359,9 +397,7 @@
                       },
                       success: function complete(data) {
                        if(data.data.is_complete==1){
-                    //     setTimeout(function () {
-                    //     window.location.href = "{{ route('list.list') }}";
-                    // }, 1000);
+                    
                      var x=document.getElementById("label-name-"+data.data.id).style.textDecoration="line-through";
                      window.location.href = "{{ route('list.list') }}";
 
@@ -386,19 +422,23 @@
 
 
         @endforeach
+        <div class="col-3">
+            <div class="card" >
+                
+                    <input type="hidden" name="color" id="color" value="color">
+                    <input type="hidden" name="type" id="type" value="type">
+                    <button onclick="list()">add</button>
+                    
+                    
+                    
+                      
 
-        <!-- end col -->
-        <div class="col-lg-4">
-            <div class="card">
-                <form method='POST' action="{{ route('list.store.list') }}" >
-                    <input type="hidden" name="color" value="color">
-                    <input type="hidden" name="type" value="type">
-                    @csrf
+                    
                     <div id="newElementId">
                     </div>
 
 
-                </form>
+   
                 <div class="card-body">
                     <div class="text-center d-grid">
                         <a href="javascript: void(0);" id="newbtnId" onclick="createNewElement();"
@@ -409,8 +449,14 @@
                 </div>
             </div>
         </div>
+        </div>
+
+        <!-- end col -->
+        
+       
     </div>
     </div>
+    
 
     <!-- end row -->
 @endsection
@@ -423,11 +469,12 @@
             var txtNewInputBox = document.createElement('div');
             document.getElementById("newbtnId").style.display = "none";
             // Then add the content (a new input box) of the element.
-            txtNewInputBox.innerHTML ="<input type='text' name='name'  class='form-control' placeholder='Enter List Name'>";
+            txtNewInputBox.innerHTML ="<input type='text' name='name' id='listnamein'  class='form-control' placeholder='Enter List Name'>";
             // Finally put it where it is supposed to appear.
             document.getElementById("newElementId").appendChild(txtNewInputBox);
         }
     </script>
+
 
     <!-- jquery-validation -->
     <script src="{{ URL::asset('/assets/libs/jquery-validation/jquery-validation.min.js') }}"></script>
