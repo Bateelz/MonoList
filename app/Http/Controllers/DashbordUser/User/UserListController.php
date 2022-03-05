@@ -31,7 +31,7 @@ class UserListController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
         // return $request->all();
         $request->validate([
             'name' => 'required',
@@ -147,7 +147,7 @@ class UserListController extends Controller
 
 
     public function delete($id)
-    {
+    { dd(id);
         $list = UserList::where('id', $id)->first();
         if ($list) {
             $list->delete();
