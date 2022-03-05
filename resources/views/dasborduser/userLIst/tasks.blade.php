@@ -23,7 +23,7 @@
             <div class="col-3">
                 <div class="card"  style="height:95%; overflow-y: scroll;">
                     <div class="card-body">
-                        
+
                         @php $list_item=App\Models\User\UserItem::where('list_id',$item->id)->where('is_complete',0)->get();
                          $list_item_complete=App\Models\User\UserItem::where('list_id',$item->id)->where('is_complete',1)->get();
                         @endphp
@@ -91,9 +91,9 @@
                             <div id="rename" data-id="{{ $item->id }}">
                             </div>
                         </form>
-
-
-                        <h4 class="card-title mb-4" id="listname">{{ $item->name }}</h4>
+                          <div class="activity">
+                          <h4 class="card-title mb-4" id="listname">{{ $item->name }}</h4>
+                          </div>
 
 
 
@@ -175,9 +175,9 @@
                                         </div><!-- /.modal -->
                                     @endforeach
                                 @endif
-                                
+
                             </div>
-                             
+
 
                             <div class="text-center d-grid">
                                 <a href="javascript: void(0);" class="btn btn-danger waves-effect waves-light"
@@ -193,28 +193,28 @@
                             <div class="completediv-{{ $data->id }}">
                             <div class="card task-box" id="uptask-1">
                                             <div class="card-body" id="card-name-{{ $data->id }}">
-                                                
+
                                                 <div class="float-end ml-2 ">
                                                 </div>
                                                 <div >
 
-                                                 
+
                                                     <label  id="label-name-{{ $data->id }}">  <s>{{ $data->name }}</S> </label>
                                                 </div>
 
                                             </div>
                                         </div>
-                            
+
                             </div>
 
 
-                           
+
                             @endforeach
 
                             </div>
 
-                            
-                            
+
+
 
                             <div id="modalForm" class="modal fade bs-example-modal-lg-lg{{ $item->id }}" tabindex="-1"
                                 role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -255,8 +255,8 @@
                     </div>
                 </div>
             </div>
-            
-            
+
+
 
 
             <script>
@@ -350,15 +350,15 @@
                     });
                 };
             </script>
-            
+
 <script>
                 function list() {
                     var name=document.getElementById("listnamein").value;
                     console.log(name);
-                  
+
                     var color=$("#color").val();
                     var type=$("#type").val();
-                   
+
                   $.ajax({
                       url: '{{route('list.store.list')}}',
                       method: 'post',
@@ -371,13 +371,13 @@
 
                       },
                       success: function list(data) {
-                    //    alert("add sucssful");
+                        location.reload();
+                          JQuery('activity').append(data.div);
                       },
                       error: function() {
-                          
                           alert(name);
                       },
-                     
+
                   });
 
               };
@@ -397,7 +397,7 @@
                       },
                       success: function complete(data) {
                        if(data.data.is_complete==1){
-                    
+
                      var x=document.getElementById("label-name-"+data.data.id).style.textDecoration="line-through";
                      window.location.href = "{{ route('list.list') }}";
 
@@ -424,21 +424,21 @@
         @endforeach
         <div class="col-3">
             <div class="card" >
-                
+
                     <input type="hidden" name="color" id="color" value="color">
                     <input type="hidden" name="type" id="type" value="type">
                     <button onclick="list()">add</button>
-                    
-                    
-                    
-                      
 
-                    
+
+
+
+
+
                     <div id="newElementId">
                     </div>
 
 
-   
+
                 <div class="card-body">
                     <div class="text-center d-grid">
                         <a href="javascript: void(0);" id="newbtnId" onclick="createNewElement();"
@@ -452,11 +452,11 @@
         </div>
 
         <!-- end col -->
-        
-       
+
+
     </div>
     </div>
-    
+
 
     <!-- end row -->
 @endsection
