@@ -24,6 +24,36 @@ class UserListController extends Controller
         return view('dasborduser.userLIst.tasks', compact('list'));
     }
 
+    public function get_list(){
+        $list=UserList::get();
+        return response()->json(['mag'=>'success','data'=>$list]);
+    }
+
+    public function store_list(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'type' => 'required',
+            'color' => 'required',
+        ]);
+        $list = new UserList();
+        $list->name = $request->name;
+        $list->type = $request->type;
+        $list->color = $request->color;
+        $list->user_id = 1;
+        $list->save();
+
+        // Todo:Add Code List
+        $code = Str::random(22);
+        $userlink = new UserLink();
+        $userlink->user_id = 1;
+        $userlink->list_id = $list->id;
+        $userlink->code = $code;
+        $userlink->end_code = null;
+        $userlink->save();
+
+        return response()->json(['msg'=>'success','data'=>$list->name],200);
+    }
+
 
     public function create()
     {

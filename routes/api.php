@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashbordUser\User\UserListController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::get('get_list',[UserListController::class,'get_list']);
+Route::post('store_list',[UserListController::class,'store_list']);
