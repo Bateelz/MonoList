@@ -39,7 +39,7 @@ class UserListController extends Controller
         $list->name = $request->name;
         $list->type = $request->type;
         $list->color = $request->color;
-        $list->user_id = 1;
+        $list->user_id = Auth::id();
         $list->save();
 
         // Todo:Add Code List
