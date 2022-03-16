@@ -25,6 +25,10 @@ Route::namespace("Api")->group(function(){
       Route::post('login',[LoginController::class,'login']);
       Route::post('register',[LoginController::class,'register']);
   });
+
+  Route::prefix('list')->middleware('auth:api')->group(function(){
+    Route::get('get_list',[UserListController::class,'get_list']);
+    Route::post('store_list',[UserListController::class,'store_list']);
+  });
 });
-Route::get('get_list',[UserListController::class,'get_list']);
-Route::post('store_list',[UserListController::class,'store_list']);
+
