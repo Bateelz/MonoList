@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\DashbordUser\User\UserListController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,5 +20,11 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+Route::namespace("Api")->group(function(){
+  Route::prefix('auth')->group(function(){
+      Route::post('login',[LoginController::class,'login']);
+      Route::post('register',[LoginController::class,'register']);
+  });
+});
 Route::get('get_list',[UserListController::class,'get_list']);
 Route::post('store_list',[UserListController::class,'store_list']);
