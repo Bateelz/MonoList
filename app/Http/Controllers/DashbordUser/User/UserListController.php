@@ -13,56 +13,16 @@ use Illuminate\Support\Str;
 
 class UserListController extends Controller
 {
-    public function index()
-    {
-        return view('dasborduser.userLIst.tasks-list');
-    }
+
 
     public function list()
     {
         $list = UserList::where("user_id", Auth::id())->get();
-        return view('dasborduser.userLIst.tasks', compact('list'));
+        return $this->successResponse(["list"=>$list]);
     }
 
-    public function get_list(){
-        $list=UserList::get();
-        return response()->json(['mag'=>'success','data'=>$list]);
-    }
 
     public function store_list(Request $request){
-        $request->validate([
-            'name' => 'required',
-            'type' => 'required',
-            'color' => 'required',
-        ]);
-        $list = new UserList();
-        $list->name = $request->name;
-        $list->type = $request->type;
-        $list->color = $request->color;
-        $list->user_id = Auth::id();
-        $list->save();
-
-        // Todo:Add Code List
-        $code = Str::random(22);
-        $userlink = new UserLink();
-        $userlink->user_id = 1;
-        $userlink->list_id = $list->id;
-        $userlink->code = $code;
-        $userlink->end_code = null;
-        $userlink->save();
-
-        return response()->json(['msg'=>'success','data'=>$list->name],200);
-    }
-
-
-    public function create()
-    {
-        return view('dasborduser.userLIst.tasks-create');
-    }
-
-    public function store(Request $request)
-    {
-        // return $request->all();
         $request->validate([
             'name' => 'required',
             'type' => 'required',
@@ -83,15 +43,10 @@ class UserListController extends Controller
         $userlink->code = $code;
         $userlink->end_code = null;
         $userlink->save();
-
-        $div="<h4 class='card-title mb-4' id='listitem'>'.$list->name.'</h4>";
-         $data=[
-             'name'=>$list->name,
-             'id'=>$list->id,
-         ];
-
-        return response()->json(['msg'=>'success','data'=>$data,'div'=>$div],200);
+        return $this->successResponse(["list"=>$list]);
     }
+
+
 
     public function get_link_list($list_id)
     {
@@ -100,10 +55,9 @@ class UserListController extends Controller
         if ($userlink) {
             $userlink->end_code = Carbon::now()->addDay(3);
             $userlink->save();
-            return response()->json(['msg' => 'success', 'data' =>"show_list".'/'. $userlink->code], 200);
+            return $this->successResponse(['link'=>"show_list".'/'. $userlink->code]);
         }
-        // alert()->error('Not Found List','Not Found');
-        return response()->json(['msg' => 'notfound', 'data' => null], 422);
+        return $this->errorResponse('notFound');
     }
 
     public function show_list($token)
@@ -116,11 +70,12 @@ class UserListController extends Controller
                 $list_id = $userlink ? $userlink->list_id : null;
                 $userList = UserList::where('id', $list_id)->first();
                 $userItem = UserItem::where('list_id', $list_id)->get();
-                return view('dasborduser.userLIst.share-list', compact('userList', 'userItem'));
+                return $this->successResponse(["userList"=>$userList,"userItem"=>$userItem]);
+                // return view('dasborduser.userLIst.share-list', compact('userList', 'userItem'));
             }
-            abort(419);
+          return $this->errorResponse("expired time");
         }
-        abort(404);
+        return $this->errorResponse("notFound");
     }
 
 
@@ -133,11 +88,9 @@ class UserListController extends Controller
         if ($list) {
             $list->name = $request->name;
             $list->save();
-            // alert()->success('Rename List Success','Success Rename');
-            return redirect()->route('list.list');
+            return $this->successResponse(["list"=>$list],"Success Rename");
         }
-        // alert()->error('Not Foune List','Not Found');
-        return redirect()->route('list.list');
+      return $this->errorResponse('NotFound');
     }
 
     public function addItem(Request $request, $id)
@@ -150,8 +103,7 @@ class UserListController extends Controller
         $item->name = $request->name;
         $item->user_id = Auth::id();
         $item->save();
-        // alert()->success('Add Item Success','Success Add');
-        return back();
+        return $this->successResponse(["item"=>$item],'Success Item Add');
     }
 
 
@@ -159,13 +111,12 @@ class UserListController extends Controller
     {
         $item = UserItem::where('id', $id)->first();
         if ($item) {
-            $item->name = $request->name;
+            $item->name = $request->name ? $request->name:$item->name;
             $item->save();
-            // alert()->success('Edit Item Success','Success Edit');
-            return back();
+            return $this->successResponse(["item"=>$item],'Success Item edit');
+
         }
-        // alert()->error('Not Found Item','Not Found');
-        return back();
+     return $this->errorResponse('NotFound');
     }
 
 
@@ -174,11 +125,10 @@ class UserListController extends Controller
         $item = UserItem::where('id', $id)->first();
         if ($item) {
             $item->delete();
-            // alert()->success('Delete Item Success','Delete Success');
-            return back();
+            return $this->successResponse(null,'Success Item delete');
+
         }
-        // alert()->error('Not Found Item','Not Found');
-        return back();
+     return $this->errorResponse('Notfound');
     }
 
 
@@ -187,9 +137,10 @@ class UserListController extends Controller
         $list = UserList::where('id', $id)->first();
         if ($list) {
             $list->delete();
-            return back();
+            return $this->successResponse(null,'Success List delete');
+
         }
-        return redirect()->route('list.list');
+     return $this->errorResponse('Notfound');
     }
 
     public function is_complete($item){
@@ -197,8 +148,8 @@ class UserListController extends Controller
         if($useritem){
            $useritem->is_complete=1;
            $useritem->save();
-           return response()->json(['msg'=>'success','data'=>$useritem],200);
+           return $this->successResponse(['item'=>$useritem],'success Item Completed');
         }
-        return response()->json(['msg'=>'faild','data'=>null],422);
+        return $this->errorResponse('NotFound');
     }
 }

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ActiveUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class LoginController extends Controller
@@ -44,6 +46,11 @@ class LoginController extends Controller
         $user->password=Hash::make($request->password);
         $user->save();
         $token = JWTAuth::fromuser($user);
+        $data=[
+            'user_id'=>$user->id,
+            'email'=>$user->email,
+        ];
+        Mail::to($request->email)->send(new ActiveUser($data));
         return $this->successResponse([
             "user" => $user,
             "token" => $token

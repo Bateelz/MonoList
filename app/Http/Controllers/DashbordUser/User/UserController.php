@@ -16,21 +16,15 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
-       return view('dasborduser.user.index');
-    }
-
     public function profile(){
-        return view('dasborduser.user.profile.index');
+        return $this->successResponse(["profile"=>Auth::user()]);
     }
 
-    public function updateProfile(Request $request, $id)
+    public function updateProfile(Request $request)
     {
 
         $request->validate([
             'fullname' => ['required', 'string', 'max:255'],
-            // 'last_name' => ['required', 'string', 'max:255'],
-            // 'user_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email'],
             'age' => ['required', 'date'],
             'avatar' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:1024'],
@@ -38,14 +32,12 @@ class UserController extends Controller
             'phone_number'=>['nullable'],
         ]);
 
-        $user = User::find($id);
+        $user = User::find(Auth::id());
         $user->fullname = $request->get('fullname');
         $user->email = $request->get('email');
         $user->gender = $request->get('gender');
         $user->phone_number = $request->get('phone_number');
-
         $user->age = date('Y-m-d', strtotime($request->get('age')));
-
         if ($request->file('avatar')) {
             $avatar = $request->file('avatar');
             $avatarName = time() . '.' . $avatar->getClientOriginalExtension();
@@ -70,7 +62,7 @@ class UserController extends Controller
         }
     }
 
-    public function updatePassword(Request $request, $id)
+    public function updatePassword(Request $request)
     {
         $request->validate([
             'current_password' => ['required', 'string'],
@@ -84,7 +76,7 @@ class UserController extends Controller
                 'Message' => "Your Current password does not matches with the password you provided. Please try again."
             ], 200); // Status code
         } else {
-            $user = User::find($id);
+            $user = User::find(Auth::id());
             $user->password = Hash::make($request->get('password'));
             $user->update();
             if ($user) {
