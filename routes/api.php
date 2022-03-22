@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\ForgetPasswordController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\DashbordUser\User\UserController;
 use App\Http\Controllers\DashbordUser\User\UserListController;
@@ -25,7 +26,15 @@ Route::namespace("Api")->group(function(){
   Route::prefix('auth')->group(function(){
       Route::post('login',[LoginController::class,'login']);
       Route::post('register',[LoginController::class,'register']);
+
+      Route::prefix('forget_password')->group(function(){
+        Route::post('/',[ForgetPasswordController::class,'verifyEmailLogin']);
+        Route::post('checkcode',[ForgetPasswordController::class,'checkcode']);
+        Route::post('updatepassword',[ForgetPasswordController::class,'UpdatePassword']);
+
+      });
   });
+
 
 
   Route::prefix('list')->middleware(['auth:api','CheckUserStatus'])->group(function () {
