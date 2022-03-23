@@ -39,7 +39,7 @@ class ForgetPasswordController extends Controller
              $token=rand(1111,9999);
             DB::table('password_resets')->insert([
                 'email' => $request->email,
-                'token' => $token,
+                'code' => $token,
                 'created_at' => Carbon::now()
             ]);
                 $data = [
