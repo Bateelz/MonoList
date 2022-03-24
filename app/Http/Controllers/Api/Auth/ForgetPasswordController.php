@@ -20,7 +20,7 @@ class ForgetPasswordController extends Controller
         $this->validate($request, ['code' => 'required']);
         $email=DB::table('password_resets')->where('code',$request->code)->first();
         if ($email) {
-            $time_now = Carbon::now()->format('H:i:s Y:m:d');
+            $time_now = Carbon::now()->addMinute(15)->format('H:i:s Y:m:d');
             $time_created = Carbon::parse($email->created_at)->format('H:i:s Y:m:d');
             if ($time_now > $time_created) {
                 return $this->errorResponse('Inviled time', 422);

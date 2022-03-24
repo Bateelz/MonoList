@@ -26,6 +26,7 @@ Route::namespace("Api")->group(function(){
   Route::prefix('auth')->group(function(){
       Route::post('login',[LoginController::class,'login']);
       Route::post('register',[LoginController::class,'register']);
+      Route::post('login_by_social',[LoginController::class,'login_by_social']);
 
       Route::prefix('forget_password')->group(function(){
         Route::post('/',[ForgetPasswordController::class,'verifyEmailLogin']);
